@@ -1,9 +1,6 @@
 import {Poppins, Roboto} from 'next/font/google';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./globals.css";
-import Header from '@/components/header';
-
-
+import Navbar from '@/components/admin-components/navbar';
 const roboto = Roboto({
   subsets:["latin"],
   weight:["100", "300", "400", "500", "700", "900"],
@@ -15,15 +12,15 @@ const poppins = Poppins({
   variable:"--font-poppins"
 })
 export const metadata = {
-  title: "Learning Made Easy",
-  description: "Learn skills online",
+  title: "Admin Dashboard",
+  description: "Manage Courses",
 };
 
-export default function RootLayout({ children }) {
+export default function Layout({ children }) {
   return (
     <html lang="en">
       <body className={`${roboto.variable} ${poppins.variable}`}>
-        <Header/>
+        <Navbar/>
         {children}
       </body>
     </html>

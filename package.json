@@ -9,8 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "bootstrap": "^5.3.6",
+    "cloudinary": "^2.6.1",
+    "mongoose": "^8.15.0",
+    "multer": "^2.0.0",
+    "next": "15.1.8",
+    "next-auth": "^4.24.11",
+    "next-connect": "^1.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.1.8"
+    "swiper": "^11.2.8"
   }
 }
