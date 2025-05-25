@@ -5,8 +5,7 @@ import Course from "@/models/Course"
 export async function GET() {
   await dbConnect()
 
-  const courses = await Course.find({}).populate("category")
-
+  const courses = await Course.find({})
   return Response.json(courses)
 }
 

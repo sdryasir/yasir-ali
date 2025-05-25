@@ -2,7 +2,6 @@
 import dbConnect from "@/lib/mongoose"
 import Category from "@/models/Category"
 import { NextResponse } from "next/server";
-import multer from "multer";
 import { Readable } from "stream";
 import { v2 as cloudinary } from "cloudinary";
 

@@ -1,28 +1,16 @@
-import React from 'react'
+// app/dashboard/courses/page.tsx
+import CreateCourseForm from '@/components/admin-components/CreateCourseForm';
+import { createCourse } from '@/actions/createCourse';
+import dbConnect from '@/lib/mongoose';
+import Category from '@/models/Category';
 
-function page() {
+export default async function CoursesPage() {
+  await dbConnect();
+  const categories = await Category.find().lean();
+
   return (
-    <div className='container mt-5'>
-      <div className='d-flex justify-content-between mb-3'>
-        <h2>Add New Course</h2>
-      </div>
-      <form className='w-50'>
-        <div className="row mb-3">
-            <label htmlFor="name" className="col-sm-2 col-form-label">Name</label>
-            <div className="col-sm-10">
-            <input type="email" className="form-control" id="name"/>
-            </div>
-        </div>
-        <div className="row mb-3">
-            <label htmlFor="description" className="col-sm-2 col-form-label">Description</label>
-            <div className="col-sm-10">
-            <input type="password" className="form-control" id="description"/>
-            </div>
-        </div>
-        <button type="submit" className="btn btn-primary">Sign in</button>
-      </form>
+    <div className="p-10">
+      <CreateCourseForm categories={categories} onSubmit={createCourse} />
     </div>
-  )
+  );
 }
-
-export default page

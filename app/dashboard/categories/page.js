@@ -1,6 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image';
+import { revalidatePath } from 'next/cache';
+import DeleteButton from '@/components/admin-components/delete-button';
+
 
 async function getCategories() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`, {
@@ -14,12 +17,33 @@ async function getCategories() {
   return res.json();
 }
 
+
+
 async function Categories() {
   const categories = await getCategories();
+
+  
+
+   async function deleteCategory(id) {
+    'use server';
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      console.log('RESPONSE TEXT:', text);
+      throw new Error(`Delete failed: ${res.status}\n${text}`);
+    }
+
+    revalidatePath('/dashboard/categories'); // Optional: refresh UI
+  }
+
   return (
     <div className='container mt-5'>
       <div className='d-flex justify-content-between mb-3'>
-        <h2>Course categories</h2>
+        <h2>Course Categories</h2>
         <Link className='btn btn-success' href={'/dashboard/categories/add-category'}>Add Category</Link>
       </div>
       <div className="table-responsive">
@@ -30,6 +54,7 @@ async function Categories() {
               <th scope="col">Name</th>
               <th scope="col">Description</th>
               <th scope="col">Image</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -46,11 +71,16 @@ async function Categories() {
                       cat.imageUrl?<Image src={cat.imageUrl} alt={cat.name} width={100} height={50}/>:'No Image'
                     }
                   </td>
+                  <td width={300}>
+                    <DeleteButton
+                      id={cat._id}
+                      action={deleteCategory.bind(null, cat._id)}
+                    />
+                  </td>
                 </tr>
                 )
               })
             }
-            
           </tbody>
         </table>
       </div>

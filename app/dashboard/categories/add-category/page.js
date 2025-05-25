@@ -8,11 +8,12 @@ export default function AddCategoryPage() {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const handleSubmit = async (e) => {
     
     e.preventDefault();
-
+    setLoading(true);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
@@ -25,9 +26,11 @@ export default function AddCategoryPage() {
 
     const data = await res.json();
     if (res.ok) {
+      setLoading(false);
       setMessage(`✅ Image uploaded:`);
       router.push('/dashboard/categories');
     } else {
+      setLoading(false);
       setMessage(`❌ Error: ${data.error}`);
     }
   };
@@ -65,7 +68,7 @@ export default function AddCategoryPage() {
             onChange={(e) => setImage(e.target.files[0] || null)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Add</button>
+        <button type="submit" disabled={loading?true:false} className="btn btn-primary">{loading?'Saving...': 'Add'}</button>
       </form>
       {message && <p className="mt-3">{message}</p>}
     </div>
