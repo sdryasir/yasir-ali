@@ -17,7 +17,7 @@ const poppins = Poppins({
 export const metadata = {
   title: {
     template:'%s',
-    default: 'Learn Skills - Grow Faster'
+    default: 'Learn Skills - Boost Your Skills - Grow Faster'
   },
   description: "Discover high-quality tech learning videos designed to boost skills and fuel career growth for students and professionals. Learn programming, development, and the latest technologies anytime, anywhere.",
   metadataBase: new URL('https://yasir-ali.vercel.app/'),
@@ -30,11 +30,16 @@ export const metadata = {
     images:['open_graph.jpg']
   },
   openGraph:{
-    title: 'Tech Learning Videos - Boost Your Skills',
+    title: 'Learn Skills - Boost Your Skills - Grow Faster',
     description: 'Discover high-quality tech learning videos to grow your career. Learn coding, design, and more with expert-led tutorials.',
     url: 'https://yasir-ali.vercel.app/',
     siteName: 'Tech Learning Hub',
-    images: ['open_graph.jpg'],
+    images: [{
+      url:'open_graph.jpg',
+      width: 1200,
+      height: 630,
+      alt: 'Tech Learning Platform'
+    }],
   },
   icons: {
     icon: '/favicon.png', 
