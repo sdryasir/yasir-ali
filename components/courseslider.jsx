@@ -24,7 +24,7 @@ export default async function CourseSlider({ category }) {
   const courses = await getCoursesByCategory(category._id)
 
   return (
-    <div className="container py-4">
+    <div className="container py-4" id="courses">
       <h3 className="mb-4">{category.name}</h3>
       <CSlider courses={courses} />
     </div>
