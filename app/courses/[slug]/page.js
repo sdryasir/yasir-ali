@@ -13,10 +13,15 @@ function page() {
 
   useEffect(() => {
     async function fetchCourse() {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/courses/${courseId}`);
-      const data = await res.json();
-      setCourse(data);
-      setLoading(false);
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/courses/${courseId}`);
+        const data = await res.json();
+        setCourse(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed fetch", error);
+        
+      }
     }
     fetchCourse();
   }, [courseId]);

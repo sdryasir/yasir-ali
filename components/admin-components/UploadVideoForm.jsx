@@ -12,9 +12,13 @@ export default function UploadVideoForm() {
 
   useEffect(() => {
     async function fetchCourses() {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/courses`);
-      const data = await res.json();
-      setCourses(data);
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/courses`);
+        const data = await res.json();
+        setCourses(data);
+      } catch (error) {
+        console.error("Failed", error);
+      }
     }
     fetchCourses();
   }, []);

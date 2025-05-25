@@ -9,7 +9,7 @@ export async function DELETE(request, { params }) {
   await dbConnect();
 
   try {
-    const category = await Category.findByIdAndDelete(params.id);
+    const category = await Category.findByIdAndDelete(await params.id);
 
     if (!category) {
       return new Response(JSON.stringify({ message: 'category not found' }), {

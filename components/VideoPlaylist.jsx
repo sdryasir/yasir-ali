@@ -8,10 +8,15 @@ export default function VideoPlaylist({ courseId }) {
 
   useEffect(() => {
     async function fetchVideos() {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/videos/${courseId}`);
-      const data = await res.json();
-      setVideos(data);
-      setSelectedVideo(data[0]); // set first video by default
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/videos/${courseId}`);
+        const data = await res.json();
+        setVideos(data);
+        setSelectedVideo(data[0]); // set first video by default
+      } catch (error) {
+        console.error("Failed", error);
+        
+      }
     }
     fetchVideos();
   }, [courseId]);

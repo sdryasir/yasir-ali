@@ -7,16 +7,21 @@ import "swiper/css/pagination";
 import CSlider from "./CSlider";
 
 async function getCoursesByCategory(id) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/courses/category/${id}`,
-    {
-      cache: "no-store", // disables caching if you want fresh data always
-    }
-  );
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/courses/category/${id}`,
+      {
+          cache: "no-store", // disables caching if you want fresh data always
+        }
+      );
 
-  if (!res.ok) throw new Error("Failed to fetch categories");
+      if (!res.ok) throw new Error("Failed to fetch categories");
 
-  return res.json();
+      return res.json();
+  } catch (error) {
+    console.error("Failed", error);
+    
+  }
 }
 
 export default async function CourseSlider({ category }) {

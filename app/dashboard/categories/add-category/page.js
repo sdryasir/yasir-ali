@@ -19,19 +19,24 @@ export default function AddCategoryPage() {
     formData.append("description", description);
     formData.append("image", image);
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`, {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`, {
+        method: "POST",
+        body: formData,
+        });
 
-    const data = await res.json();
-    if (res.ok) {
-      setLoading(false);
-      setMessage(`✅ Image uploaded:`);
-      router.push('/dashboard/categories');
-    } else {
-      setLoading(false);
-      setMessage(`❌ Error: ${data.error}`);
+        const data = await res.json();
+        if (res.ok) {
+          setLoading(false);
+          setMessage(`✅ Image uploaded:`);
+          router.push('/dashboard/categories');
+        } else {
+          setLoading(false);
+          setMessage(`❌ Error: ${data.error}`);
+        }
+    } catch (error) {
+      console.error("failed", error);
+      
     }
   };
 

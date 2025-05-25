@@ -6,15 +6,20 @@ import DeleteButton from '@/components/admin-components/delete-button';
 
 
 async function getCategories() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`, {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`, {
     cache: 'no-store', // ensures fresh data in RSC
-  });
+    });
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch categories');
+    if (!res.ok) {
+      throw new Error('Failed to fetch categories');
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("failed fetch", error);
+    
   }
-
-  return res.json();
 }
 
 
@@ -27,17 +32,22 @@ async function Categories() {
    async function deleteCategory(id) {
     'use server';
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories/${id}`, {
-      method: 'DELETE',
-    });
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories/${id}`, {
+        method: 'DELETE',
+      });
 
-    if (!res.ok) {
-      const text = await res.text();
-      console.log('RESPONSE TEXT:', text);
-      throw new Error(`Delete failed: ${res.status}\n${text}`);
+      if (!res.ok) {
+        const text = await res.text();
+        console.log('RESPONSE TEXT:', text);
+        throw new Error(`Delete failed: ${res.status}\n${text}`);
+      }
+
+      revalidatePath('/dashboard/categories'); // Optional: refresh UI
+    } catch (error) {
+      console.error("failed fetch", error);
+      
     }
-
-    revalidatePath('/dashboard/categories'); // Optional: refresh UI
   }
 
   return (
