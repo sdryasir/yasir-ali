@@ -1,5 +1,4 @@
 import {Poppins, Roboto} from 'next/font/google';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
 import Header from '@/components/header';
