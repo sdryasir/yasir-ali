@@ -16,7 +16,7 @@ function Navbar() {
                     </button>
                     <div className={`collapse navbar-collapse ${showMobileMenu? 'show':''}`} id="navbarSupportedContent">
                         <div className={`btn close-btn ${showMobileMenu?'d-block':'d-none'}`} onClick={()=>setShowMobileMenu(false)}>
-                            <Image src={'/close.svg'} width={75} height={75} alt='close'/>
+                            <Image src={'/close.svg'} width={65} height={65} alt='close'/>
                         </div>
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
