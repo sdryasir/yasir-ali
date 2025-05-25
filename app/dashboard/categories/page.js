@@ -43,7 +43,7 @@ async function Categories() {
         throw new Error(`Delete failed: ${res.status}\n${text}`);
       }
 
-      revalidatePath('/dashboard/categories'); // Optional: refresh UI
+      // revalidatePath('/dashboard/categories');
     } catch (error) {
       console.error("failed fetch", error);
       
