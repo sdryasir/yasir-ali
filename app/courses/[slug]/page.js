@@ -19,7 +19,7 @@ function page() {
         setCourse(data);
         setLoading(false);
       } catch (error) {
-        console.error("Failed fetch", error);
+        console.error("Failed fetch @@@", error);
         
       }
     }

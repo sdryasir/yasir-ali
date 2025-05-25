@@ -17,7 +17,7 @@ async function getCategories() {
 
     return res.json();
   } catch (error) {
-    console.error("failed fetch", error);
+    console.error("failed fetch###", error);
     
   }
 }
@@ -45,7 +45,7 @@ async function Categories() {
 
       // revalidatePath('/dashboard/categories');
     } catch (error) {
-      console.error("failed fetch", error);
+      console.error("failed fetch!!!!", error);
       
     }
   }
