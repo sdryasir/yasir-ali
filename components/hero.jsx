@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 function Hero() {
   return (
-    <section className="banner-area banner-bg" style={{"background-image":"url(/img/banner_bg.jpg)"}}>
+    <section className="banner-area banner-bg" style={{"backgroundImage":"url(/img/banner_bg.jpg)"}}>
         <div className="container py-3 py-md-5">
             <div className="row banner__content">
                 <div className="col-lg-6">
@@ -61,8 +61,8 @@ function Hero() {
                     </div>
                 </div>
                 <div className="col-lg-6">
-                    <div className="banner__images d-none d-md-flex" style={{'display':'flex','justify-content':'end'}}>
-                        <Image data-aos="fade-left" src="/img/1.png" alt="img" className="main-img" width={400} height={550} style={{'max-width': '450px'}}/>
+                    <div className="banner__images d-none d-md-flex" style={{'display':'flex','justifyContent':'end'}}>
+                        <Image data-aos="fade-left" src="/img/1.png" alt="img" className="main-img" width={400} height={550} style={{'maxWidth': '450px'}}/>
                         <Image decoding="async" src="/img/bshape_03.png" alt="shape" className="shape" width={100} height={100} data-aos="fade-down-right" data-aos-delay="1200"/>
                         <Image decoding="async" src="/img/bshape_04.png" alt="shape" className="shape" width={100} height={100} data-aos="fade-up-right" data-aos-delay="1200"/>
                         <Image decoding="async" src="/img/bshape_05.png" alt="shape" className="shape" width={100} height={100} data-aos="fade-down-left" data-aos-delay="1200"/>
