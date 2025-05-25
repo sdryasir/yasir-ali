@@ -7,9 +7,7 @@ import DeleteButton from '@/components/admin-components/delete-button';
 
 async function getCategories() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`, {
-    cache: 'no-store', // ensures fresh data in RSC
-    });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`, { next: { revalidate: 60 } });
 
     if (!res.ok) {
       throw new Error('Failed to fetch categories');
@@ -43,7 +41,7 @@ async function Categories() {
         throw new Error(`Delete failed: ${res.status}\n${text}`);
       }
 
-      // revalidatePath('/dashboard/categories');
+      revalidatePath('/dashboard/categories');
     } catch (error) {
       console.error("failed fetch!!!!", error);
       

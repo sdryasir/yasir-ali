@@ -35,7 +35,10 @@ export const metadata = {
     url: 'https://yasir-ali.vercel.app/',
     siteName: 'Tech Learning Hub',
     images: ['open_graph.jpg'],
-  }
+  },
+  icons: {
+    icon: '/favicon.png', 
+  },
 };
 
 export default function RootLayout({ children }) {
