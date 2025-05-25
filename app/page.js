@@ -1,3 +1,4 @@
+export const revalidate = 60;
 import Hero from "@/components/hero";
 import CourseSlider from "@/components/courseslider";
 
@@ -11,8 +12,7 @@ async function getCategories() {
     if (!res.ok) throw new Error("Failed to fetch categories")
     return res.json()
   } catch (error) {
-    console.error("Fetch failed:", error);
-    throw err;
+    console.error("Fetch failed 11:", error);
   }
 }
 
