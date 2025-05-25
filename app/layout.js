@@ -15,8 +15,27 @@ const poppins = Poppins({
   variable:"--font-poppins"
 })
 export const metadata = {
-  title: "Learning Made Easy",
-  description: "Learn skills online",
+  title: {
+    template:'%s',
+    default: 'Learn Skills - Grow Faster'
+  },
+  description: "Discover high-quality tech learning videos designed to boost skills and fuel career growth for students and professionals. Learn programming, development, and the latest technologies anytime, anywhere.",
+  metadataBase: new URL('https://yasir-ali.vercel.app/'),
+  twitter:{
+    card:'summary_large_image',
+    site:'https://yasir-ali.vercel.app/',
+    creator:'@Yasir_SuperTech',
+    title:'Your Learning Partner',
+    description:'Learn programming, development, and the latest technologies anytime, anywhere.',
+    images:['open_graph.jpg']
+  },
+  openGraph:{
+    title: 'Tech Learning Videos - Boost Your Skills',
+    description: 'Discover high-quality tech learning videos to grow your career. Learn coding, design, and more with expert-led tutorials.',
+    url: 'https://yasir-ali.vercel.app/',
+    siteName: 'Tech Learning Hub',
+    images: ['open_graph.jpg'],
+  }
 };
 
 export default function RootLayout({ children }) {
