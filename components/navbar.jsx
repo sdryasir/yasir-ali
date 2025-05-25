@@ -34,6 +34,9 @@ function Navbar() {
                             <li className="nav-item">
                                 <Link className="nav-link" href={'/what-is'}>What is</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" href={'/live-classes'}>Live Classes</Link>
+                            </li>
                         </ul>
                         
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">

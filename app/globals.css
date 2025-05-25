@@ -230,8 +230,6 @@ img, svg {
 .close-btn{
     position: absolute;
     top: 0;
-    width: 65px;
-    height: 65px;
     border-radius: 50%;
     right: 0;
 } 

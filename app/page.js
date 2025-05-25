@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 
 import Hero from "@/components/hero";
 import CourseSlider from "@/components/courseslider";
+import Review from "@/components/Review";
 
 
 async function getCategories() {
@@ -29,7 +30,7 @@ export default async function Home() {
           )
         })
       }
-      
+      <Review/>
     </>
   );
 }
