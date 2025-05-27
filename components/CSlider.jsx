@@ -27,7 +27,7 @@ function CSlider({courses}) {
           992: { slidesPerView: 4 },
         }}
       >
-        {courses.map((course) => (
+        {courses?.map((course) => (
           <SwiperSlide key={course._id}>
             <Link  key={course._id} href={{
               pathname: `/courses/${slugify(course.title)}`,

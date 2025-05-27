@@ -9,9 +9,10 @@ import CSlider from "./CSlider";
 async function getCoursesByCategory(id) {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/courses/category/${id}`,
-      {
-          cache: "no-store", // disables caching if you want fresh data always
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/courses/category/${id}`,{
+          next: {
+            revalidate: 3600, // 1 hour
+          },
         }
       );
 
@@ -31,7 +32,14 @@ export default async function CourseSlider({ category }) {
   return (
     <div className="container py-5" id="courses">
       <h3 className="mb-4">{category.name}</h3>
-      <CSlider courses={courses} />
+      {!courses ? (
+          <p>Loading courses...</p>
+        ) : courses?.length === 0 ? (
+          <p>No Course found.</p>
+        ) : (
+          <CSlider courses={courses} />
+        )}
+      
     </div>
   );
 }
