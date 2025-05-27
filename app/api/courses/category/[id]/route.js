@@ -1,6 +1,7 @@
 // app/api/courses/category/[id]/route.js
 import dbConnect from '@/lib/mongoose'
 import Course from '@/models/Course'
+import Category from '@/models/Category';
 import mongoose from 'mongoose';
 
 export async function GET(req, { params }) {
