@@ -27,10 +27,10 @@ export default async function Home() {
       <Hero/>
       {!categories ? (
           <p>Loading categories...</p>
-        ) : categories.length === 0 ? (
+        ) : categories?.length === 0 ? (
           <p>No categories found.</p>
         ) : (
-          categories.map((category) => (
+          categories?.map((category) => (
             <CourseSlider key={category._id} category={category} />
           ))
         )}
