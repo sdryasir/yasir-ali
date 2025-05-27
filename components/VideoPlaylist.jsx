@@ -6,6 +6,9 @@ export default function VideoPlaylist({ courseId }) {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
+  const [loading, setLoading] = useState(false);
+  const [quiz, setQuiz] = useState()
+
   useEffect(() => {
     async function fetchVideos() {
       try {
@@ -20,6 +23,35 @@ export default function VideoPlaylist({ courseId }) {
     }
     fetchVideos();
   }, [courseId]);
+
+  const handleGenerateQuiz = async (videoUrl) => {    
+    try {
+      setLoading(true);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/transcribe-youtube`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ videoUrl }),
+      });
+
+      const data = await res.json();
+      if (!data.transcript) throw new Error('No transcript returned');
+      console.log("&&&&&&&&&&", data);
+      
+      // Now send transcript to OpenAI for quiz
+      const quizRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/generate-quiz`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ transcript: data.transcript }),
+      });
+
+      const quizData = await quizRes.json();
+      setQuiz(quizData.quiz);
+    } catch (err) {
+      alert('Error: ' + err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className='px-3'>
@@ -38,6 +70,25 @@ export default function VideoPlaylist({ courseId }) {
           )}
           <h5>{selectedVideo?.title}</h5>
           <p>{selectedVideo?.description}</p>
+          <button onClick={()=>handleGenerateQuiz(`https://www.youtube.com/watch?v=${selectedVideo.youtubeId}`)}>Generate Quiz</button>
+          {quiz && (
+            <div className="mt-4">
+              <h4>Quiz:</h4>
+              <ul>
+                {quiz.map((q, index) => (
+                  <li key={index}>
+                    <strong>{q.question}</strong>
+                    <ul>
+                      {q.options.map((opt, i) => (
+                        <li key={i}>{opt}</li>
+                      ))}
+                    </ul>
+                    <p><strong>Answer:</strong> {q.answer}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         {/* Playlist */}

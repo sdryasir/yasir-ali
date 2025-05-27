@@ -8,7 +8,9 @@ import Review from "@/components/Review";
 async function getCategories() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`, {
-    cache: "no-store" // disables caching if you want fresh data always
+      next: {
+        revalidate: 3600, // 1 hour
+      },
     })
 
     if (!res.ok) throw new Error("Failed to fetch categories")
@@ -23,13 +25,15 @@ export default async function Home() {
   return (
     <>
       <Hero/>
-      {
-        categories.map((category)=>{
-          return (
-            <CourseSlider key={category._id} category={category}/>
-          )
-        })
-      }
+      {!categories ? (
+          <p>Loading categories...</p>
+        ) : categories?.length === 0 ? (
+          <p>No categories found.</p>
+        ) : (
+          categories?.map((category) => (
+            <CourseSlider key={category._id} category={category} />
+          ))
+        )}
       <Review/>
     </>
   );
