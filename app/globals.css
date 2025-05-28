@@ -233,6 +233,10 @@ img, svg {
     border-radius: 50%;
     right: 0;
 } 
+.course-card-title{
+    font-weight: 600;
+    font-size: 1.2rem;
+}
 
 
 

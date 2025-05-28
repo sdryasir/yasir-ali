@@ -38,7 +38,7 @@ function CSlider({courses}) {
                   <Image src={course.thumbnail} alt={course.title} fill style={{ objectFit: 'cover' }} />
                 </div>
                   <div className="card-body d-flex justify-content-between">
-                    <h5 className="card-title">{course.title}</h5>
+                    <p className="card-title course-card-title">{course.title}</p>
                     <p className={`card-text fw-bold ${course.price==0 ? 'text-danger':''}`}>{course.price == 0 ? 'Free': `PKR. ${course.price}`}</p>
                   </div>
               </div>
