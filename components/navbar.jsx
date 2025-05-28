@@ -15,8 +15,8 @@ function Navbar() {
                     <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className={`collapse navbar-collapse ${showMobileMenu? 'show':''}`} id="navbarSupportedContent">
-                        <div className={`btn close-btn ${showMobileMenu?'d-block':'d-none'}`} onClick={()=>setShowMobileMenu(false)}>
-                            <Image src={'/close.svg'} width={65} height={65} alt='close'/>
+                        <div className={`btn close-btn p-0 ${showMobileMenu?'d-block':'d-none'}`} onClick={()=>setShowMobileMenu(false)}>
+                            <Image src={'/close.svg'} width={35} height={35} alt='close'/>
                         </div>
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             {/* <li className="nav-item">

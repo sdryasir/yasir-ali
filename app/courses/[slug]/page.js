@@ -1,10 +1,10 @@
 'use client'
 import React,{useState, useEffect} from 'react'
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useSearchParams } from 'next/navigation';
 import VideoPlaylist from '@/components/VideoPlaylist';
 
-function page() {
+function Page() {
 
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -26,7 +26,7 @@ function page() {
     fetchCourse();
   }, [courseId]);
 
-  if (loading) return <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+  if (loading) return <div className="d-flex justify-content-center align-items-center vh-100 loading-overlay">
       <div className="text-center">
         <div className="spinner-border text-primary" role="status" style={{ width: "4rem", height: "4rem" }}>
           <span className="visually-hidden">Loading...</span>
@@ -45,4 +45,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
