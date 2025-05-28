@@ -70,7 +70,7 @@ function Review() {
                     <Link href={'/'} style={{textDecoration:'none'}}>
                     <div className="card h-100 shadow-sm">
                         <div className="card-body">
-                            <h5 className="card-title">{review.title}</h5>
+                            <p className="card-title course-card-title">{review.title}</p>
                             {
                                 Array.from({ length: review.stars }, (_, i) => (
                                     <span key={i}>⭐</span>
