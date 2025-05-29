@@ -5,6 +5,7 @@ import { useState } from 'react';
 export default function CreateCourseForm({ categories, onSubmit }) {
   const [tags, setTags] = useState(['']);
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
+  const [slug, setSlug] = useState('');
 
   const handleTagChange = (index, value) => {
     const newTags = [...tags];
@@ -20,6 +21,18 @@ export default function CreateCourseForm({ categories, onSubmit }) {
     if (file) setThumbnailPreview(URL.createObjectURL(file));
   };
 
+  const handleTitleChange = (e)=>{
+    const title = e.target.value;
+    const generatedSlug = title
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[\s\W-]+/g, '-');
+    setSlug(generatedSlug);
+  }
+
+  
+
   return (
     <div className="container mt-4">
         <form action={onSubmit} className="p-4 w-75 bg-light border rounded shadow-sm">
@@ -27,7 +40,11 @@ export default function CreateCourseForm({ categories, onSubmit }) {
 
             <div className="mb-3">
                 <label className="form-label">Title</label>
-                <input name="title" type="text" required className="form-control" />
+                <input name="title" onChange={handleTitleChange} type="text" required className="form-control" />
+            </div>
+            <div className="mb-3">
+                <label className="form-label">Slug</label>
+                <input name="slug" type="text" value={slug} readOnly required className="form-control" />
             </div>
 
             <div className="mb-3">

@@ -35,10 +35,12 @@ cloudinary.config({
 export async function POST(req) {
   const formData = await req.formData();
   const name = formData.get("name");
+  const slug = formData.get("slug");
   const description = formData.get("description");
   const file = formData.get("image");
+  const status = formData.get("status");
 
-  if (!file || !name || !description) {
+  if (!file || !name || !description || !slug ||  !status) {
     return NextResponse.json({ error: "All fields required" }, { status: 400 });
   }
 
@@ -69,8 +71,10 @@ export async function POST(req) {
     // Save to DB
     const category = new Category({
       name,
+      slug,
       description,
       imageUrl: result.secure_url,
+      status
     });
 
     await category.save();

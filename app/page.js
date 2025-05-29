@@ -16,7 +16,7 @@ async function getCategories() {
     if (!res.ok) throw new Error("Failed to fetch categories")
     return res.json()
   } catch (error) {
-    console.error("Fetch failed 11:", error);
+    console.error("Failed to fetch categories:", error);
   }
 }
 
@@ -31,7 +31,7 @@ export default async function Home() {
           <p>No categories found.</p>
         ) : (
           categories?.map((category) => (
-            <CourseSlider key={category._id} category={category} />
+              category.status == 'public'? <CourseSlider key={category._id} category={category} />:null
           ))
         )}
       <Review/>

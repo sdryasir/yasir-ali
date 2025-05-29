@@ -7,9 +7,9 @@ import { v2 as cloudinary } from "cloudinary";
 
 export async function DELETE(request, { params }) {
   await dbConnect();
-
+  const id = (await params).id
   try {
-    const category = await Category.findByIdAndDelete(await params.id);
+    const category = await Category.findByIdAndDelete(id);
 
     if (!category) {
       return new Response(JSON.stringify({ message: 'category not found' }), {
@@ -25,6 +25,14 @@ export async function DELETE(request, { params }) {
       status: 500,
     });
   }
+}
+
+export async function GET(request, { params }) {
+  await dbConnect()
+  const id= (await params).id;
+  const category = await Category.findById(id)
+
+  return Response.json(category)
 }
 
 export async function PATCH(req, { params }) {
