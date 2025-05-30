@@ -18,11 +18,13 @@ async function getCourse(slug) {
 async function page({params}) {
   const slug = params.slug;
   const course = await getCourse(slug); 
+  console.log("*************", course);
+  
 
   if (!course || course.length === 0) {
-    return <div>Course not found</div>;
+    return <div className="container">Course not found</div>;
   }
-  
+
   return (
     <div className="course-landing-page">
       <div className="header">
