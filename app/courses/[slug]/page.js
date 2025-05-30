@@ -45,7 +45,7 @@ async function page({params}) {
             </div>
             <div className="rating-wrapper mt-1">
               <div className="badge">Tags</div>
-              <div className="badge">{course[0].tags?.map((tag, i)=>(
+              <div className="badge">{course[0].length > 0 && course[0].tags?.map((tag, i)=>(
                 <span key={i}>{tag}{i < course[0].tags.length - 1 && ', '}</span>
               ))}</div>
             </div>
