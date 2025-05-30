@@ -28,7 +28,7 @@
     -ms-border-radius: 4px;
     border-radius: 4px;
     padding: 7px 15px;
-    color: #1363df;
+    color: #0E408B;
     margin: 0 0 10px;
 }
 #spin {
@@ -233,6 +233,10 @@ img, svg {
     border-radius: 50%;
     right: 0;
 } 
+.course-card-title{
+    font-weight: 600;
+    font-size: 1.2rem;
+}
 
 
 
@@ -251,7 +255,6 @@ img, svg {
     } 
        
 }
-
 
 
 /* Course landing page */
@@ -345,4 +348,9 @@ img, svg {
         max-width: 100%!important;
     }
        
+.loading-overlay{
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+    inset: 0;
+    color: #d8e7ff;
 }

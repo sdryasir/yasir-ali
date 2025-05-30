@@ -15,11 +15,11 @@ function Navbar() {
                     <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className={`collapse navbar-collapse ${showMobileMenu? 'show':''}`} id="navbarSupportedContent">
-                        <div className={`btn close-btn ${showMobileMenu?'d-block':'d-none'}`} onClick={()=>setShowMobileMenu(false)}>
-                            <Image src={'/close.svg'} width={65} height={65} alt='close'/>
+                        <div className={`btn close-btn p-0 ${showMobileMenu?'d-block':'d-none'}`} onClick={()=>setShowMobileMenu(false)}>
+                            <Image src={'/close.svg'} width={35} height={35} alt='close'/>
                         </div>
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <Link className="nav-link active" aria-current="page" href={"/programming"}>Programming</Link>
                             </li>
                             <li className="nav-item">
@@ -36,7 +36,7 @@ function Navbar() {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" href={'/live-classes'}>Live Classes</Link>
-                            </li>
+                            </li> */}
                         </ul>
                         
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">

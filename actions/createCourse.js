@@ -4,6 +4,7 @@ import dbConnect from '@/lib/mongoose';
 import Course from '@/models/Course';
 import { Readable } from 'stream';
 import { v2 as cloudinary } from 'cloudinary';
+import { redirect } from 'next/navigation';
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -13,6 +14,7 @@ cloudinary.config({
 
 export async function createCourse(formData) {
   const title = formData.get('title');
+  const slug = formData.get('slug');
   const description = formData.get('description');
   const category = formData.get('category');
   const instructor = formData.get('instructor');
@@ -22,7 +24,8 @@ export async function createCourse(formData) {
   const tags = formData.getAll('tags[]').filter(Boolean);
   const file = formData.get('thumbnail');
 
-  if (!title || !description || !category || !instructor) {
+
+  if (!title || !description || !category || !instructor || !slug) {
     throw new Error('Missing required fields');
   }
 
@@ -51,6 +54,7 @@ export async function createCourse(formData) {
 
   const course = new Course({
     title,
+    slug,
     description,
     category,
     instructor,
@@ -62,4 +66,6 @@ export async function createCourse(formData) {
   });
 
   await course.save();
+
+  redirect('/dashboard/courses');
 }
