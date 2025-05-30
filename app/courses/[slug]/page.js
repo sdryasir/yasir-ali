@@ -16,7 +16,7 @@ async function getCourse(slug) {
 }
 
 async function page({params}) {
-  const slug = (await params).slug;
+  const slug = params.slug;
   const course = await getCourse(slug); 
   return (
     <div className="course-landing-page">
