@@ -7,7 +7,7 @@ import DeleteButton from '@/components/admin-components/delete-button';
 
 async function getCategories() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`, { next: { revalidate: 60 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`, { cache: 'no-store' });
 
     if (!res.ok) {
       throw new Error('Failed to fetch categories');
@@ -43,7 +43,7 @@ async function Categories() {
 
       revalidatePath('/dashboard/categories');
     } catch (error) {
-      console.error("failed fetch!!!!", error);
+      console.error("failed to delete category", error);
       
     }
   }
@@ -60,9 +60,10 @@ async function Categories() {
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
-              <th scope="col">Description</th>
+              <th scope="col">Slug</th>
+              <th scope="col">Status</th>
               <th scope="col">Image</th>
-              <th scope="col">Actions</th>
+              <th scope="col" colSpan={2}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -73,7 +74,8 @@ async function Categories() {
                 <tr key={cat._id}>
                   <th scope="row">{i+1}</th>
                   <td>{cat.name}</td>
-                  <td>{cat.description}</td>
+                  <td>{cat.slug ? cat.slug:'no slug'}</td>
+                  <td>{cat.status}</td>
                   <td>
                     {
                       cat.imageUrl?<Image src={cat.imageUrl} alt={cat.name} width={100} height={50}/>:'No Image'
@@ -85,6 +87,11 @@ async function Categories() {
                       action={deleteCategory.bind(null, cat._id)}
                     />
                   </td>
+                  {/* <td width={300}>
+                      <Link href={`/dashboard/categories/edit-category/${cat._id}`}>
+                        <button className="btn btn-sm btn-info">Edit</button>
+                      </Link>
+                  </td> */}
                 </tr>
                 )
               })

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-
+import Link from 'next/link';
 export default function VideoPlaylist({ courseId }) {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -34,9 +34,7 @@ export default function VideoPlaylist({ courseId }) {
       });
 
       const data = await res.json();
-      if (!data.transcript) throw new Error('No transcript returned');
-      console.log("&&&&&&&&&&", data);
-      
+      if (!data.transcript) throw new Error('No transcript returned');      
       // Now send transcript to OpenAI for quiz
       const quizRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/generate-quiz`, {
         method: 'POST',
@@ -52,6 +50,11 @@ export default function VideoPlaylist({ courseId }) {
       setLoading(false);
     }
   };
+
+  if(videos.length ==0) return <div className="container py-5">
+    <p className='fw-bold'>No Video Found in this course</p>
+    <Link href={'/'}>Go Back</Link>
+  </div>
 
   return (
     <div className='px-3'>
@@ -70,7 +73,7 @@ export default function VideoPlaylist({ courseId }) {
           )}
           <h5>{selectedVideo?.title}</h5>
           <p>{selectedVideo?.description}</p>
-          <button onClick={()=>handleGenerateQuiz(`https://www.youtube.com/watch?v=${selectedVideo.youtubeId}`)}>Generate Quiz</button>
+          <button className='btn btn-info' disabled={true} onClick={()=>handleGenerateQuiz(`https://www.youtube.com/watch?v=${selectedVideo.youtubeId}`)}>Generate Quiz</button>
           {quiz && (
             <div className="mt-4">
               <h4>Quiz:</h4>

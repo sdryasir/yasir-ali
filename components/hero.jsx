@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 function Hero() {
   return (
-    <section className="banner-area banner-bg" style={{"backgroundImage":"url(/img/banner_bg.jpg)"}}>
+    <section className="banner-area banner-bg" style={{"backgroundImage":"url(/img/banner_bg.webp)"}}>
         <div className="container py-3 py-md-5">
             <div className="row banner__content">
                 <div className="col-lg-6">
@@ -55,7 +55,7 @@ function Hero() {
                         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1363df" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                             <div className="number-info">
                                 <span>Have a question?</span>
-                                <h6 className="number"><a href="https://wa.me/923185048329">+923185045329</a></h6>
+                                <h4 className="number" style={{fontSize:'1.1rem'}}><a href="https://wa.me/923185048329">+923185045329</a></h4>
                             </div>
                         </div>
                         </div>
@@ -63,7 +63,7 @@ function Hero() {
                 </div>
                 <div className="col-lg-6">
                     <div className="banner__images d-none d-md-flex" style={{'display':'flex','justifyContent':'end'}}>
-                        <Image data-aos="fade-left" src="/img/1.png" alt="img" className="main-img" width={400} height={550} style={{'maxWidth': '450px'}}/>
+                        <Image data-aos="fade-left" src="/img/1.webp" alt="img" className="main-img" width={400} height={550} style={{'maxWidth': '450px'}}/>
                         <Image decoding="async" src="/img/bshape_03.png" alt="shape" className="shape" width={100} height={100} data-aos="fade-down-right" data-aos-delay="1200"/>
                         <Image decoding="async" src="/img/bshape_04.png" alt="shape" className="shape" width={100} height={100} data-aos="fade-up-right" data-aos-delay="1200"/>
                         <Image decoding="async" src="/img/bshape_05.png" alt="shape" className="shape" width={100} height={100} data-aos="fade-down-left" data-aos-delay="1200"/>

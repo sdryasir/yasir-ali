@@ -55,6 +55,7 @@ async function page({params}) {
               ))}</div>
             </div>
           </div>
+
         </div>
       </div>
       <main className="main-area py-3">
@@ -198,7 +199,5 @@ async function page({params}) {
   );
 }
 
-export default page;
-{
-  /* <VideoPlaylist courseId={course._id} /> */
-}
+
+export default page

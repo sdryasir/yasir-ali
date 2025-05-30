@@ -6,8 +6,8 @@ import Category from '@/models/Category';
 
 export default async function CoursesPage() {
   await dbConnect();
-  const categories = await Category.find().lean();
-
+  let categories = await Category.find().lean();
+  categories = JSON.parse(JSON.stringify(categories));
   return (
     <div className="p-10">
       <CreateCourseForm categories={categories} onSubmit={createCourse} />
