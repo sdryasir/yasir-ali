@@ -3,7 +3,12 @@ import Course from '@/models/Course';
 
 export async function GET(req, { params }) {
   await dbConnect();
-  const { slug } = await params;
-  const course = await Course.find({slug});
-  return Response.json(course);
+  try {
+    const { slug } = await params;
+    const course = await Course.find({slug});
+    return Response.json(course);
+  } catch (error) {
+    console.log("Error single course based on slug", error);
+    
+  }
 }
