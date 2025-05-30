@@ -347,6 +347,7 @@ img, svg {
     .landing-page-header {
         max-width: 100%!important;
     }
+}
        
 .loading-overlay{
     background-color: rgba(0, 0, 0, .5);
