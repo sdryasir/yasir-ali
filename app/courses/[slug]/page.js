@@ -1,60 +1,38 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import styles from "./page.module.css";
-// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { useSearchParams } from "next/navigation";
-import VideoPlaylist from "@/components/VideoPlaylist";
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-function page() {
-  const [course, setCourse] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const searchParams = useSearchParams();
-  const courseId = searchParams.get("id");
+async function getCourse(slug) {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/course/${slug}`, {
+      cache: 'no-store'
+    })
 
-  // useEffect(() => {
-  //   async function fetchCourse() {
-  //     try {
-  //       const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/courses/${courseId}`);
-  //       const data = await res.json();
-  //       setCourse(data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.error("Failed fetch @@@", error);
+    if (!res.ok) throw new Error("Failed to fetch course")
+    return res.json()
+  } catch (error) {
+    console.error("Fetch failed 11:", error);
+  }
+}
 
-  //     }
-  //   }
-  //   fetchCourse();
-  // }, [courseId]);
-
-  // if (loading) return <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
-  //     <div className="text-center">
-  //       <div className="spinner-border text-primary" role="status" style={{ width: "4rem", height: "4rem" }}>
-  //         <span className="visually-hidden">Loading...</span>
-  //       </div>
-  //       <p className="mt-3 fs-5">Please wait while the Courses loads...</p>
-  //     </div>
-  //   </div>;
-  // if (!course) return <div className="container py-4">Course not found.</div>;
-
+async function page({params}) {
+  const slug = (await params).slug;
+  const course = await getCourse(slug); 
   return (
     <div className="course-landing-page">
       <div className="header">
         <div className="container">
           <div className="landing-page-header">
-            <h1>Complete Python Course From Beginning to Advance Level</h1>
+            <h1>{course[0].title}</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Excepturi, enim asperiores laudantium vitae possimus dolore.
-              Aliquam aperiam vero minima fugit optio molestias similique, id,
-              ad voluptatibus ipsa nostrum et deleniti.
+              {course[0].description}
             </p>
             <div className="rating-wrapper mb-3">
               <div className="b-seller">Best Seller</div>
               <div className="badge">4 ⭐⭐⭐⭐</div>
             </div>
             <div className="badge">
-              Created By: <a href="">Yasir Ali</a>
+              Created By: <a href="#">{course[0].instructor}</a>
             </div>
             <div className="badge">
               Last Updated: <span>5/2025</span>
@@ -64,6 +42,12 @@ function page() {
             </div>
             <div className="badge">
               Certificate: <span>Available</span>
+            </div>
+            <div className="rating-wrapper mt-1">
+              <div className="badge">Tags</div>
+              <div className="badge">{course[0].tags?.map((tag, i)=>(
+                <span key={i}>{tag}{i < course[0].tags.length - 1 && ', '}</span>
+              ))}</div>
             </div>
           </div>
         </div>
@@ -75,41 +59,38 @@ function page() {
               <div className="course-objectives border p-4">
                 <h2>Course Overview</h2>
                 <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Quasi aliquam sapiente minima animi perferendis, quod dolorem
-                  delectus voluptas! Laudantium provident quod eius quia,
-                  consectetur voluptate facilis voluptates cupiditate cumque id?
+                  {course[0].description}
                 </p>
               </div>
             </div>
             <div className="col-md-4 p-0 sidebar-wrapper">
               <div>
-                <div className="sidebar-thumbnail position-relative w-100">
-                  <Image
-                    src={"/img/python-from-basic-to-advance-1.jpg"}
-                    style={{ objectFit: "cover" }}
-                    fill
-                    alt="course thumbnail"
-                  />
-                  <div className="overlay">
-                    <div className="play-icon">
-                      <svg className="pulse-image" width={64} height={64} fill="#ffffff" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M 27.9999 51.9063 C 41.0546 51.9063 51.9063 41.0781 51.9063 28 C 51.9063 14.9453 41.0312 4.0937 27.9765 4.0937 C 14.8983 4.0937 4.0937 14.9453 4.0937 28 C 4.0937 41.0781 14.9218 51.9063 27.9999 51.9063 Z M 23.7109 37.0469 C 22.6327 37.7031 21.4140 37.1875 21.4140 36.0625 L 21.4140 19.9375 C 21.4140 18.8594 22.7030 18.3906 23.7109 18.9766 L 36.8827 26.7812 C 37.8436 27.3437 37.8671 28.6797 36.8827 29.2656 Z"></path></g></svg>
+                <Link href={`/courses/${slug}/learn/${course[0]._id}`}>
+                  <div className="sidebar-thumbnail position-relative w-100">
+                    <Image
+                      src={course[0].thumbnail}
+                      style={{ objectFit: "cover" }}
+                      fill
+                      alt="course thumbnail"
+                    />
+                    <div className="overlay">
+                      <div className="play-icon">
+                        <svg className="pulse-image" width={64} height={64} fill="#ffffff" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M 27.9999 51.9063 C 41.0546 51.9063 51.9063 41.0781 51.9063 28 C 51.9063 14.9453 41.0312 4.0937 27.9765 4.0937 C 14.8983 4.0937 4.0937 14.9453 4.0937 28 C 4.0937 41.0781 14.9218 51.9063 27.9999 51.9063 Z M 23.7109 37.0469 C 22.6327 37.7031 21.4140 37.1875 21.4140 36.0625 L 21.4140 19.9375 C 21.4140 18.8594 22.7030 18.3906 23.7109 18.9766 L 36.8827 26.7812 C 37.8436 27.3437 37.8671 28.6797 36.8827 29.2656 Z"></path></g></svg>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
                 <div className="sidebar-body border px-3 pb-3">
                   <div>
                     <p className="font-bold text-2xl my-2"></p>
                     <div className="flex">
                       <h3 className="font-bold text-4xl">
-                        Free
+                        {course[0].price == 0 ? 'Free': `PKR. ${course[0].price}`}
                         <span className="text-sm line-through opacity-80"></span>
                       </h3>
                     </div>
                     <div>
-                      <button className="btn btn-primary btn-action w-100">
-                        Start Course
-                      </button>
+                      <Link className="btn btn-primary btn-action w-100" href={`/courses/${slug}/learn/${course[0]._id}`}>Start Course</Link>
                     </div>
                     <p className="fw-bold mt-4">What you will get:</p>
                     <div className="mt-2 border-bottom pb-4">
@@ -131,7 +112,7 @@ function page() {
                           <path d="M320 360c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H208c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h112z"></path>
                         </svg>
                         <p className="m-0 ms-2">
-                          5h 1m 30s on-demand video content
+                          On-demand video content
                         </p>
                       </div>
                       <div className="d-flex align-items-center">
@@ -158,7 +139,7 @@ function page() {
                               <span className="ms-3">Level</span>
                             </div>
                             <div className="video-corse-info">
-                              <span>Beginners</span>
+                              <span>{course[0].level}</span>
                             </div>
                           </li>
                           <li>
@@ -167,7 +148,7 @@ function page() {
                               <span className="ms-3">Lectures</span>
                             </div>
                             <div className="video-corse-info">
-                              <span>8 Lectures</span>
+                              <span>- Lectures</span>
                             </div>
                           </li>
                           <li>
@@ -176,7 +157,7 @@ function page() {
                               <span className="ms-3">Duration</span>
                             </div>
                             <div className="video-corse-info">
-                              <span>1h 30m 12s</span>
+                              <span>{course[0].duration}</span>
                             </div>
                           </li>
                           <li>
@@ -185,7 +166,7 @@ function page() {
                               <span className="ms-3">Language</span>
                             </div>
                             <div className="video-corse-info">
-                              <span>English</span>
+                              <span>Urdu</span>
                             </div>
                           </li>
                           <li>

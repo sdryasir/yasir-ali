@@ -29,10 +29,7 @@ function CSlider({courses}) {
       >
         {courses?.map((course) => (
           <SwiperSlide key={course._id}>
-            <Link  key={course._id} href={{
-              pathname: `/courses/${slugify(course.title)}`,
-              query: { id: course._id }
-            }} style={{textDecoration:'none'}}>
+            <Link  key={course._id} href={`/courses/${slugify(course.title)}`} style={{textDecoration:'none'}}>
               <div className="card h-100 shadow-sm">
                 <div style={{ width: '100%', aspectRatio: '16 / 9', position: 'relative' }}>
                   <Image src={course.thumbnail} alt={course.title} fill style={{ objectFit: 'cover' }} />

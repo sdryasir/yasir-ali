@@ -6,7 +6,7 @@ export default function Loading() {
         <div className="spinner-border text-primary" role="status" style={{ width: "4rem", height: "4rem" }}>
           <span className="visually-hidden">Loading...</span>
         </div>
-        <p className="mt-3 fs-5">Please wait while the page loads...</p>
+        <p className="mt-3 fs-5">Please wait while the course loads...</p>
       </div>
     </div>
   );
