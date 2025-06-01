@@ -347,6 +347,7 @@ img, svg {
     .landing-page-header {
         max-width: 100%!important;
     }
+}
        
 .loading-overlay{
     background-color: rgba(0, 0, 0, .5);
@@ -354,3 +355,15 @@ img, svg {
     inset: 0;
     color: #d8e7ff;
 }
+
+.about-para{
+    font-size: 1.2rem;
+    line-height: 2;
+}
+.about-heading{
+    background: linear-gradient(225deg, #ffc63f 0%, #fd3358 49%, #bc35d8 100%);
+     background: -webkit-linear-gradient(225deg, #ffc63f 0%, #fd3358 49%, #bc35d8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
