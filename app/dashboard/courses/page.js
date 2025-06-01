@@ -8,7 +8,7 @@ import DeleteButton from "@/components/admin-components/delete-button";
 async function getCourses() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/courses`, {
-      cache: 'no-store',
+      next: { revalidate: 60 }
     });
 
     if (!res.ok) {

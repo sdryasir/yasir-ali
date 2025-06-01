@@ -1,7 +1,7 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+
 export default function VideoPlaylist({ courseId }) {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -104,8 +104,7 @@ export default function VideoPlaylist({ courseId }) {
                 className={`list-group-item list-group-item-action ${selectedVideo?._id === video._id ? 'active' : '' }`}
                 style={{ cursor: 'pointer' }}
                 onClick={() => setSelectedVideo(video)}>
-                <span>{i+1} - </span>
-                {video.title}
+                <span className='fw-bold'>{i+1} - {video.title}</span>
               </li>
             ))}
           </ul>
