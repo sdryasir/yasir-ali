@@ -15,9 +15,13 @@ cloudinary.config({
 export async function GET() {
   await dbConnect()
 
-  const blogs = await Blog.find({})
-
-  return Response.json(blogs)
+  try {
+    const blogs = await Blog.find({});
+    return Response.json(blogs);
+  } catch (error) {
+    console.log('Server error - fetching blogs', error);
+    
+  }
 }
 
 export async function POST(req) {

@@ -14,7 +14,7 @@ async function getBlogs() {
 
     return res.json();
   } catch (error) {
-    console.error("failed fetch blogs", error);
+    console.error("failed fetch blogs -- catch", error);
     
   }
 }
@@ -63,7 +63,9 @@ async function Page() {
           </thead>
           <tbody>
             {
-              blogs.map((blog, i)=>{
+              blogs.length == 0? <tr>
+                <td colSpan={5}>No Blog Found</td>
+              </tr>:blogs.map((blog, i)=>{
                 return (
                   <tr key={i}>
                     <th scope="row">{i+1}</th>
