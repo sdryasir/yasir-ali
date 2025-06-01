@@ -33,7 +33,7 @@ export default function FAQ() {
 
   return (
     <section className="container">
-      <h2 className="mb-4 fw-bold">Frequently Asked Questions</h2>
+      <h3 className="mb-4 fw-bold">Frequently Asked Questions</h3>
       <div className="accordion" id="faqAccordion">
         {faqs.map((faq, index) => (
           <div className="accordion-item border rounded mb-3 shadow-sm" key={index}>

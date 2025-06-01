@@ -43,8 +43,8 @@ function Footer() {
               </Link>
             </li>
             <li className="nav-item mb-2">
-              <Link href={'/support-center'} className="nav-link p-0 text-body-secondary">
-                Support
+              <Link href={'/privacy'} className="nav-link p-0 text-body-secondary">
+                Privacy policy
               </Link>
             </li>
           </ul>

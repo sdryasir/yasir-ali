@@ -4,6 +4,7 @@ import Hero from "@/components/hero";
 import CourseSlider from "@/components/courseslider";
 import Review from "@/components/Review";
 import { getCategories } from "@/lib/categories";
+import Faq from "@/components/Faq";
 
 export default async function Home() {
   const categories = await getCategories();  
@@ -20,6 +21,9 @@ export default async function Home() {
           ))
         )}
       <Review/>
+      <div className="faq-section py-5">
+        <Faq/>
+      </div>
     </>
   );
 }
