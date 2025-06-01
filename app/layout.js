@@ -16,6 +16,7 @@ const poppins = Poppins({
   variable:"--font-poppins"
 })
 export const metadata = {
+  type: 'website',
   title: {
     template:'%s',
     default: 'Learn Skills - Boost Your Skills - Grow Faster'
@@ -28,7 +29,7 @@ export const metadata = {
     creator:'@Yasir_SuperTech',
     title:'Your Learning Partner',
     description:'Learn programming, development, and the latest technologies anytime, anywhere.',
-    images:['open_graph.jpg']
+    images:['https://yasir-ali.vercel.app/open_graph.jpg']
   },
   openGraph:{
     title: 'Learn Skills - Boost Your Skills - Grow Faster',
@@ -36,7 +37,7 @@ export const metadata = {
     url: 'https://yasir-ali.vercel.app/',
     siteName: 'Tech Learning Hub',
     images: [{
-      url:'open_graph.jpg',
+      url:'https://yasir-ali.vercel.app/open_graph.jpg',
       width: 1200,
       height: 630,
       alt: 'Tech Learning Platform'
