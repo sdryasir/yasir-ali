@@ -2,6 +2,7 @@ import {Poppins, Roboto} from 'next/font/google';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
 import Header from '@/components/header';
+import Footer from '@/components/Footer';
 
 
 const roboto = Roboto({
@@ -52,6 +53,7 @@ export default function RootLayout({ children }) {
       <body className={`${roboto.variable} ${poppins.variable}`}>
         <Header/>
         {children}
+        <Footer/>
       </body>
     </html>
   );
