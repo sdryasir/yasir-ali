@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image';
 import DeleteButton from '@/components/admin-components/delete-button';
 import { revalidatePath } from 'next/cache';
+export const dynamic = 'force-dynamic';
 
 async function getBlogs() {
   try {
