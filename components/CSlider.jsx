@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import SmartImage from './SmartImage';
 const slugify = (text) =>
   text
     .toString()
@@ -32,7 +32,14 @@ function CSlider({courses}) {
             <Link  key={course._id} href={`/courses/${slugify(course.title)}`} style={{textDecoration:'none'}}>
               <div className="card h-100 shadow-sm">
                 <div style={{ width: '100%', aspectRatio: '16 / 9', position: 'relative' }}>
-                  <Image src={course.thumbnail} alt={course.title} fill style={{ objectFit: 'cover' }} />
+                  <SmartImage 
+                      src={course.thumbnail}
+                      alt={course.title}
+                      fill
+                      priority
+                      objectFit="cover"
+                  />
+                  {/* <Image src={course.thumbnail} alt={course.title} fill style={{ objectFit: 'cover' }} /> */}
                 </div>
                   <div className="card-body d-flex justify-content-between">
                     <p className="card-title course-card-title">{course.title}</p>

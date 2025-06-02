@@ -16,17 +16,14 @@ async function getBlogs() {
     return res.json();
   } catch (error) {
     console.error("failed fetch blogs -- catch", error);
-    
   }
 }
 
 
 async function Page() {
   const blogs = await getBlogs();
-
   async function deleteBlog(id) {
       'use server';
-  
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs/${id}`, {
           method: 'DELETE',
