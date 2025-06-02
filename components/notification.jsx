@@ -16,10 +16,10 @@ function Notification() {
         <div className="timer-wrapper d-flex justify-content-center gap-3">
           <div className="pre-text">
             <p className='m-0 pre-text-head'>Hurry Up!</p>
-            <p className='m-0 pre-text-normal'>EID Sale ends in</p>
+            <p className='m-0 pre-text-normal'>Next batch starts</p>
           </div>
           <Countdown targetDate={targetDate} onComplete={handleComplete} />
-          <button className='btn btn-warning text-white fw-bold'>Buy Now!</button>
+          <button className='btn btn-warning text-white fw-bold'>Apply Now!</button>
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ async function getCourse(slug) {
 }
 
 async function page({params}) {
-  const slug = params.slug;
+  const slug = (await params).slug;
   const course = await getCourse(slug);   
 
   if (!course || course.length === 0) {
