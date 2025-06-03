@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
 import BlogCard from "@/components/BlogCard";
+export const dynamic = 'force-dynamic';
 
 export async function getBlogs() {
   try {

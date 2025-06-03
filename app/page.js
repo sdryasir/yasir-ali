@@ -8,6 +8,7 @@ import Faq from "@/components/Faq";
 import BlogCard from "@/components/BlogCard";
 import Link from "next/link";
 import { Suspense } from "react";
+import ImageMarquee from "@/components/ImageMarquee";
 
 export async function getBlogs() {
   try {
@@ -44,7 +45,7 @@ export default async function Home() {
       <div className="faq-section py-5">
         <Faq/>
       </div>
-      <div className="blog-section py-5">
+      <div className="blog-section bg-light py-5">
         <div className="container">
           <div className="section-lead d-flex justify-content-between">
             <h3 className="mb-4 fw-bold">Blogs</h3>
@@ -65,6 +66,10 @@ export default async function Home() {
             </Suspense>
           </div>
         </div>
+      </div>
+      <div className="container py-5 comments">
+        <h3 className="mb-4 fw-bold">Our Happy Community</h3>
+        <ImageMarquee/>
       </div>
     </>
   );

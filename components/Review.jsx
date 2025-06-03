@@ -51,7 +51,7 @@ function Review() {
   return (
     <div className='py-5 bg-light'>
         <div className="container">
-            <h3 className='mb-5'>What People Say About Me?</h3>
+            <h3 className='mb-5'>What People Say About Us?</h3>
             <Swiper
                 modules={[Navigation, Pagination]}
                 spaceBetween={20}
