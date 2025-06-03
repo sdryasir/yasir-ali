@@ -8,13 +8,12 @@ import Faq from "@/components/Faq";
 import BlogCard from "@/components/BlogCard";
 import Link from "next/link";
 import { Suspense } from "react";
+import ImageMarquee from "@/components/ImageMarquee";
 
 export async function getBlogs() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs`, {
-      next: {
-        revalidate: 3600, // 1 hour
-      },
+      cache: 'no-store',
     })
 
     if (!res.ok) throw new Error("Failed to fetch blogs")
@@ -46,15 +45,16 @@ export default async function Home() {
       <div className="faq-section py-5">
         <Faq/>
       </div>
-      <div className="blog-section py-5">
+      <div className="blog-section bg-light py-5">
         <div className="container">
           <div className="section-lead d-flex justify-content-between">
             <h3 className="mb-4 fw-bold">Blogs</h3>
-            <Link href={"#"}>View All</Link>
+            <Link href={"/blogs"}>View All</Link>
           </div>
           <div className="row">
             <Suspense fallback="Loading...">
               {
+                blogs.length ==0 ? <p>No Blogs Found</p>:
                 blogs.map((blog,i)=>{
                   return (
                     <div key={i} className="col-md-4">
@@ -66,6 +66,10 @@ export default async function Home() {
             </Suspense>
           </div>
         </div>
+      </div>
+      <div className="container py-5 comments">
+        <h3 className="mb-4 fw-bold">Our Happy Community</h3>
+        <ImageMarquee/>
       </div>
     </>
   );

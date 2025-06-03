@@ -1,9 +1,12 @@
+import InnerPageHeader from "@/components/InnerPageHeader";
 import React from "react";
 
 function Page() {
   return (
+    <>
+    <InnerPageHeader title="Support Center"/>
     <div className="container mt-5">
-      <h1>Support Center</h1>
+      <h2>Support Center</h2>
       <p>This page is currently under construction, Please check back later.</p>
       <p>
         In the meantime, if you have any concerns, issues or suggestions, you
@@ -97,6 +100,7 @@ function Page() {
         <span className="ms-2 fw-bold">Schedule a Session</span>
       </a>
     </div>
+    </>
   );
 }
 

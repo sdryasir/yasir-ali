@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
 import Countdown from './CountDownTimer';
+import Link from 'next/link';
 
 function Notification() {
   const targetDate = '2025-07-03T23:59:59';
@@ -19,7 +20,7 @@ function Notification() {
             <p className='m-0 pre-text-normal'>Next batch starts</p>
           </div>
           <Countdown targetDate={targetDate} onComplete={handleComplete} />
-          <button className='btn btn-warning text-white fw-bold'>Apply Now!</button>
+          <Link href={'/apply-online'} className='btn text-white fw-bold gradient-border'>Apply Now!</Link>
         </div>
       </div>
     </div>

@@ -1,9 +1,12 @@
+import InnerPageHeader from "@/components/InnerPageHeader";
 import React from "react";
 
 function Page() {
   return (
-    <div className="container mt-5 privacy-page">
-      <h1>Privacy Policy</h1>
+    <>
+      <InnerPageHeader title="Privacy Policy"/>
+      <div className="container mt-5 privacy-page">
+      <h2>Privacy Policy</h2>
       <p>
         At EasyLearn (easylearn.com), one of our top priorities is protecting
         the privacy of our users. This Privacy Policy explains what information
@@ -37,6 +40,7 @@ function Page() {
       <h3>Cookies</h3>
       <p className="border-0">Like many websites, EasyLearn uses cookies to improve your experience. Cookies store information such as visitor preferences and the pages accessed on our website. This information helps us enhance your user experience by customizing content based on your browser type and other technical details.</p>
     </div>
+    </>
   );
 }
 

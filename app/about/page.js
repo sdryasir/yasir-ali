@@ -1,7 +1,10 @@
+import InnerPageHeader from "@/components/InnerPageHeader";
 import React from "react";
 
 function Page() {
   return (
+    <>
+    <InnerPageHeader title="About Us"/>
     <div className="container mt-5">
       <h1>What is <span className="about-heading">EasyLearn?</span></h1>
       <p className="about-para">
@@ -30,6 +33,7 @@ function Page() {
       <br/>
       <h4>Yasir Ali - <small>Founder & CEO</small></h4>
     </div>
+    </>
   );
 }
 
