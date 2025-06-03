@@ -19,7 +19,7 @@ function Notification() {
             <p className='m-0 pre-text-normal'>Next batch starts</p>
           </div>
           <Countdown targetDate={targetDate} onComplete={handleComplete} />
-          <button className='btn btn-warning text-white fw-bold'>Apply Now!</button>
+          <button className='btn text-white fw-bold gradient-border'>Apply Now!</button>
         </div>
       </div>
     </div>

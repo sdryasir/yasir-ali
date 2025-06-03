@@ -1,6 +1,7 @@
 import dbConnect from "@/lib/mongoose";
 import Blog from "@/models/Blog";
 
+
 export async function DELETE(request, { params }) {
   await dbConnect();
   const id = (await params).id

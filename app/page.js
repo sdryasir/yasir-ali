@@ -12,9 +12,7 @@ import { Suspense } from "react";
 export async function getBlogs() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs`, {
-      next: {
-        revalidate: 3600, // 1 hour
-      },
+      cache: 'no-store',
     })
 
     if (!res.ok) throw new Error("Failed to fetch blogs")
@@ -50,11 +48,12 @@ export default async function Home() {
         <div className="container">
           <div className="section-lead d-flex justify-content-between">
             <h3 className="mb-4 fw-bold">Blogs</h3>
-            <Link href={"#"}>View All</Link>
+            <Link href={"/blogs"}>View All</Link>
           </div>
           <div className="row">
             <Suspense fallback="Loading...">
               {
+                blogs.length ==0 ? <p>No Blogs Found</p>:
                 blogs.map((blog,i)=>{
                   return (
                     <div key={i} className="col-md-4">

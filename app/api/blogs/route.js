@@ -3,6 +3,8 @@ import Blog from "@/models/Blog"
 import { NextResponse } from "next/server";
 import { Readable } from "stream";
 import { v2 as cloudinary } from "cloudinary";
+import { getServerSession } from 'next-auth'
+import { authOptions } from "../auth/[...nextauth]/route";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -16,24 +18,34 @@ export async function GET() {
   await dbConnect()
 
   try {
-    const blogs = await Blog.find({});
+    const blogs = await Blog.find({status:'public'});
     return Response.json(blogs);
   } catch (error) {
     console.log('Server error - fetching blogs', error);
-    
   }
 }
 
 export async function POST(req) {
+  const session = await getServerSession(authOptions)
   const formData = await req.formData();
   const title = formData.get("title");
   const slug = formData.get("slug");
   const content = formData.get("content");
   const file = formData.get("image");
   const status = formData.get("status");
+  const author = {
+    name:session.user?.name,
+  }
+
+  console.log("====", author);
+  
 
   if (!file || !title || !content || !slug ||  !status) {
     return NextResponse.json({ error: "All fields required" }, { status: 400 });
+  }
+
+  if(!author){
+    return NextResponse.json({ error: "Author is required" }, { status: 400 });
   }
 
   const arrayBuffer = await file.arrayBuffer();
@@ -66,7 +78,8 @@ export async function POST(req) {
       slug,
       content,
       imageUrl: result.secure_url,
-      status
+      status,
+      author
     });
 
     await blog.save();
