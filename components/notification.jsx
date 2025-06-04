@@ -10,7 +10,7 @@ function Notification() {
   };
 
   return (
-    <div className="notification">
+    <div className="notification d-none d-sm-block">
     <div className="container-large">
       <div className="text-center">
 

@@ -1,11 +1,13 @@
 import VideoPlaylist from '@/components/VideoPlaylist';
-import React from 'react'
+import React, { Suspense } from 'react'
 
 async function Page({params}) {
     const id = (await params).id;
   return (
     <div>
-        <VideoPlaylist courseId={id}/>
+        <Suspense fallback="Loading...">
+          <VideoPlaylist courseId={id}/>
+        </Suspense>
     </div>
   )
 }

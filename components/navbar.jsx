@@ -25,6 +25,9 @@ function Navbar() {
                             <li className="nav-item">
                                 <Link className="nav-link" href={"/support-center"}>Support Center</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" href={"/support-center"}>Hire Developer</Link>
+                            </li>
                             {/*<li className="nav-item">
                                 <Link className="nav-link" href={'/ai'}>AI</Link>
                             </li>
