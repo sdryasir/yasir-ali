@@ -348,12 +348,25 @@ img, svg {
         max-width: 100%!important;
     }
 }
-
 @media (max-width: 575.98px) { 
-    .timer-wrapper{
-        display: block!important;
+    .swiper{
+        overflow: initial!important;
+    }
+    .swiper .swiper-button-next{
+        top: -30px;
+        right: 0!important;
+    }
+    .swiper .swiper-button-prev{
+        top: -30px;
+        right: 48px!important;
+        left: unset!important;
+    }
+    .mm-0{
+        margin-bottom: 16px!important;
     }
 }
+
+
 
        
 .loading-overlay{

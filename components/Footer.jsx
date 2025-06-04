@@ -91,6 +91,11 @@ function Footer() {
                 GitHub
               </a>
             </li>
+            <li className="nav-item mb-2">
+              <a href="https://www.youtube.com/@SuperCodepk" target="_blank" className="nav-link p-0 text-body-secondary">
+                YouTube
+              </a>
+            </li>
           </ul>
         </div>
       </footer>

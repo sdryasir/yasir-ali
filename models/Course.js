@@ -1,5 +1,6 @@
 // models/Course.js
 import mongoose from "mongoose"
+import { getCurrentDate } from '../lib/dateUtils';
 
 const CourseSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -13,7 +14,7 @@ const CourseSchema = new mongoose.Schema({
   level: String,
   tags: [String],
   thumbnail: String,
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: getCurrentDate },
 })
 
 export default mongoose.models.Course || mongoose.model("Course", CourseSchema)

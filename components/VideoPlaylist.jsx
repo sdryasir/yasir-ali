@@ -13,12 +13,13 @@ export default function VideoPlaylist({ courseId }) {
     async function fetchVideos() {
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/videos/${courseId}`);
+        if (!res.ok) throw new Error('Failed to fetch videos');
         const data = await res.json();
+        if (!Array.isArray(data) || data.length === 0) throw new Error('Invalid video data');
         setVideos(data);
         setSelectedVideo(data[0]); // set first video by default
       } catch (error) {
-        console.error("Failed", error);
-        
+        console.error('Failed to fetch videos:', error);
       }
     }
     fetchVideos();
@@ -51,10 +52,14 @@ export default function VideoPlaylist({ courseId }) {
     }
   };
 
-  if(videos.length ==0) return <div className="container py-5">
-    <p className='fw-bold'>No Video Found in this course</p>
-    <Link href={'/'}>Go Back</Link>
-  </div>
+  if (loading) return <div className="container py-5">Loading...</div>;
+
+  if (videos.length === 0 && !loading) return (
+    <div className="container py-5">
+      <p className='fw-bold'>No Video Found in this course</p>
+      <Link href={'/'}>Go Back</Link>
+    </div>
+  );
 
   return (
     <div className='px-3'>

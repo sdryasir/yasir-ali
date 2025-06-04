@@ -13,6 +13,12 @@ function Page() {
         may reach us through our following channels:
       </p>
       <h4 className="number" style={{ fontSize: "1.1rem" }}>
+        Discord Server:{" "}
+        <a href="https://discord.gg/T3UUrKjAYC" target="_blank" rel="noopener noreferrer">
+          Join Our Discord Community
+        </a>
+      </h4>
+      <h4 className="number" style={{ fontSize: "1.1rem" }}>
         WhatsApp:{" "}
         <a href="https://wa.me/923185048329" target="_blank" rel="noopener noreferrer">
           +923185048329
@@ -22,6 +28,12 @@ function Page() {
         Linkedin:{" "}
         <a href="https://www.linkedin.com/in/sdryasir/" target="_blank" rel="noopener noreferrer">
           Yasir Ali
+        </a>
+      </h4>
+      <h4 className="number" style={{ fontSize: "1.1rem" }}>
+        YouTube Channel:{" "}
+        <a href="https://www.youtube.com/@SuperCodepk" target="_blank" rel="noopener noreferrer">
+          @SuperCodepk
         </a>
       </h4>
       <br />
