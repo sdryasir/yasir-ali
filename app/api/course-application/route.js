@@ -50,11 +50,12 @@ export async function POST(req) {
     },
   });
 
+  // Email to Admin
   await transporter.sendMail({
     from: email,
     to: process.env.ADMIN_EMAIL,
-    subject: 'New Course Application',
-    html: `<h3>New Application</h3>
+    subject: 'New Course Application From EasyLearn Website',
+    html: `<h3>New Course Application From EasyLearn Website</h3>
       <p><strong>Name:</strong> ${fullname}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Phone:</strong> ${phone}</p>
@@ -63,6 +64,25 @@ export async function POST(req) {
       <p><strong>Preference:</strong> ${preference}</p>
     `,
   });
+
+  // Email to applicant
+  await transporter.sendMail({
+    from: process.env.ADMIN_EMAIL,
+    to: email,
+    subject: `Your Application for ${course} Has Been Received`,
+    html: `
+      <h2>Thank you, ${fullname}!</h2>
+      <p>We have received your application for the <strong>${course}</strong> course.</p>
+      <p>We’ll contact you shortly. Here's what we got from you:</p>
+      <ul>
+        <li><strong>Phone:</strong> ${phone}</li>
+        <li><strong>City:</strong> ${city}</li>
+        <li><strong>Preference:</strong> ${preference}</li>
+      </ul>
+      <p>Regards,<br/>Training Team<br/>EasyLearn</p>
+    `,
+  });
+
 
   return NextResponse.json({ message: 'Application submitted successfully.' });
 }

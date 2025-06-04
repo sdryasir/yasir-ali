@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
@@ -32,7 +33,10 @@ export default function CourseApplicationForm() {
 
   return (
     <div className="container mt-5">
-      <h2>Apply for Online Course</h2>
+      <div className="application-form-head d-flex justify-content-between align-items-center">
+        <h2>Apply Upcoming New Batch</h2>
+        <Link href="#" className="btn btn-secondary">View Schedule</Link>
+      </div>
       <form onSubmit={handleSubmit} className="mt-4">
         <input name="fullname" className="form-control mb-3" required placeholder="Full Name" onChange={handleChange} />
         <input name="email" type="email" className="form-control mb-3" required placeholder="Email" onChange={handleChange} />

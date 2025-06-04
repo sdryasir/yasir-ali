@@ -185,7 +185,7 @@ async function page({params}) {
                             </div>
                           </li>
                         </ul>
-                        <p className="text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum libero corporis maxime minima aliquam facilis quod dolorem nobis.</p>
+                        <p className="text-muted" style={{fontStyle: "italic", fontSize: "0.9rem"}}><strong>Note:</strong>Please note that all courses are subject to availability and may be canceled or rescheduled at the discretion of EasyLearn.</p>
                       </div>
                     </div>
                   </div>
