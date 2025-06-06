@@ -85,6 +85,7 @@ export default function BlogEditorPage() {
         <div className="mb-3">
           <label className="form-label">Blog Content</label>
           <TiptapEditor onChange={setContent} />
+          
         </div>
         <div className="mb-3">
           <label className="form-label">Main Image</label>

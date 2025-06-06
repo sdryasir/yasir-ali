@@ -3,39 +3,40 @@ import React from 'react';
 import SmartImage from './SmartImage';
 import Link from 'next/link';
 import moment from 'moment';
+import { ArrowRight, CalendarClock, User2 } from 'lucide-react';
 
 
 function BlogCard({blog}) {
   return (
     <div>
         <Link href={`/blogs/${blog.slug}`} style={{textDecoration:'none'}}>
-            <div className="card" style={{aspectRatio: '16 / 9'}}>
+            <div className="card blog-card" style={{aspectRatio: '16 / 9'}}>
                 <SmartImage 
                     src={blog.imageUrl}
                     alt={blog.title}
                     fill
                     priority
                     objectFit="cover"
+                    style={{borderTopLeftRadius: '0.5rem', borderTopRightRadius: '0.5rem',}}
+                    className='bd-blog-thumb'
                 />
-                <div className="card-body">
+                <div className="card-body" style={{borderBottomLeftRadius:'.5rem', borderBottomRightRadius:'.5rem'}}>
+                    <ul className='text-muted d-flex align-items-center gap-2 mb-3 list-unstyled'>
+                            <li className='m-0 d-flex align-items-center'>
+                                <User2 size={22} color='#07A169'/>
+                                <span className='ms-2'>{blog.author?.name}</span>
+                            </li>
+                            <li>
+                                <span className='mx-1'>|</span>
+                            </li>
+                            <li className='m-0 d-flex align-items-center'>
+                                <CalendarClock size={22} color='#07A169'/>
+                                <span className='ms-2'>{moment(blog.createdAt).format('MMMM Do YYYY')}</span>
+                            </li>
+                    </ul>
                     <h5 className="card-title mb-5">{blog.title}</h5>
-                    <div className="blog-detail d-flex align-items-center">
-                        <div className="avatar d-flex align-items-center me-2" style={{aspectRatio:'1/1'}}>
-                            <SmartImage 
-                                src={blog.author?.url ? blog.author?.url: '/img/avatar.jpg'}
-                                alt={'Yasir Ali'}
-                                priority
-                                objectFit="cover"
-                                width={40}
-                                height={40}
-                                style={{borderRadius:'50%'}}
-                            />
-                        </div>
-                        <div className='text-muted'>
-                            <p className='m-0'>{blog.author?.name}</p>
-                            <p className='m-0'><small>{moment(blog.createdAt).format('MMMM Do YYYY')}</small></p>
-                        </div>
-                    </div>
+
+                    <div className="">Read More<ArrowRight size={24} color='#07A169' /></div>
                 </div>
             </div>
         </Link>
