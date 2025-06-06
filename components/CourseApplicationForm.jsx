@@ -32,12 +32,8 @@ export default function CourseApplicationForm() {
   }
 
   return (
-    <div className="container mt-5">
-      <div className="application-form-head d-flex justify-content-between align-items-center">
-        <h2>Apply Upcoming New Batch</h2>
-        <Link href="#" className="btn btn-secondary">View Schedule</Link>
-      </div>
-      <form onSubmit={handleSubmit} className="mt-4">
+    <div>
+      <form onSubmit={handleSubmit}>
         <input name="fullname" className="form-control mb-3" required placeholder="Full Name" onChange={handleChange} />
         <input name="email" type="email" className="form-control mb-3" required placeholder="Email" onChange={handleChange} />
         <input name="phone" type="tel" pattern="^[0-9]{10,15}$" className="form-control mb-3" required placeholder="Phone Number" onChange={handleChange} />
@@ -52,7 +48,7 @@ export default function CourseApplicationForm() {
           <option value="physical">Physical</option>
         </select>
         <ReCAPTCHA sitekey="6LfLC1YrAAAAAMSQrSFT8a0oYx_8iytVBiqoqag8" onChange={setCaptcha} className="mb-3" />
-        <button type="submit" className="btn btn-primary w-100">Apply</button>
+        <button type="submit" className="btn btn-action text-white text-uppercase w-100 rounded-0" style={{height: '54px'}}>Apply Now</button>
         {msg && <p className="mt-3">{msg}</p>}
       </form>
     </div>
