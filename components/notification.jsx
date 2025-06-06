@@ -20,7 +20,7 @@ function Notification() {
             <p className='m-0 pre-text-normal'>Next batch starts</p>
           </div>
           <Countdown targetDate={targetDate} onComplete={handleComplete} />
-          <Link href={'/apply-online'} className='btn text-white fw-bold gradient-border'>Apply Now!</Link>
+          <Link href={'/apply-online'} className='btn text-white fw-bold apply-now-btn'>Apply Now!</Link>
         </div>
       </div>
     </div>
