@@ -50,7 +50,7 @@ function Hero() {
                         </p>
                         <div className="banner__btn-wrap mt-0 d-flex align-items-center">
                         <div className="tg-button-wrap">
-                            <button onClick={scrollToCourses} id="explore" className="btn btn-primary btn-action tg-svg d-flex gap-2 align-items-center p-3 px-4 rounded-2">
+                            <button onClick={scrollToCourses} id="explore" className="btn btn-primary btn-action tg-svg d-flex gap-2 align-items-center p-3 px-4 rounded-0">
                                 <span className="text">Explore Courses</span>
                                 <span className="svg-icon" id="svg-14180853459" data-svg-icon="assets/img/btn-arrow.svg">
                                     <svg width="100%" height="100%" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">

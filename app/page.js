@@ -64,7 +64,7 @@ export default async function Home() {
         {publicCategories.map((category, index) => (
           <li className="nav-item" key={category._id} role="presentation">
             <button
-              className={`nav-link ${index === 0 ? 'active' : ''}`}
+              className={`nav-link rounded-0 ${index === 0 ? 'active' : ''}`}
               id={`tab-${category._id}`}
               data-bs-toggle="tab"
               data-bs-target={`#content-${category._id}`}

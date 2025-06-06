@@ -99,6 +99,14 @@
     background-color: var(--bd-primary);
     border: none!important;
 }
+.btn-action:hover {
+    background-color: transparent!important;
+    border: 1px solid var(--bd-primary)!important;
+    color: var(--bd-primary)!important;
+}
+.start-course-btn{
+    height: 54px;
+}
 
 .btn-action .svg-icon {
     width: 14px;
@@ -608,4 +616,18 @@ img, svg {
     100% {
         left: 125%;
     }
+}
+.form-control{
+    border-radius: 0!important;
+    height: 54px!important;
+}
+.form-select{
+    border-radius: 0!important;
+    height: 54px!important;
+}
+.form-control:focus, .form-select:focus {
+    background-color: var(--bs-body-bg);
+    border-color: #dee2e6!important;
+    outline: 0;
+    box-shadow: none!important;
 }

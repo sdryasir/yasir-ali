@@ -96,7 +96,7 @@ async function page({params}) {
                       </h3>
                     </div>
                     <div>
-                      <Link className="btn btn-primary btn-action w-100" href={`/courses/${slug}/learn/${course[0]._id}`}>Start Course</Link>
+                      <Link className="btn d-flex justify-content-center fw-bold text-white rounded-0 align-items-center btn-action start-course-btn w-100" href={`/courses/${slug}/learn/${course[0]._id}`}>Start Course</Link>
                     </div>
                     <p className="fw-bold mt-4">What you will get:</p>
                     <div className="mt-2 border-bottom pb-4">
