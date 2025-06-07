@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import Link from 'next/link';
 import SmartImage from './SmartImage';
+import { ArrowUpRight } from 'lucide-react';
 const slugify = (text) =>
   text
     .toString()
@@ -33,7 +34,8 @@ function CSlider({courses}) {
             <Link  key={course._id} href={`/courses/${slugify(course.title)}`} style={{textDecoration:'none'}}>
               <div className="card card-course h-100 shadow-sm">
                 <div className="overlay-content">
-                  <p className='btn btn-action text-white'>View Course</p>
+                  <p className='btn btn-action text-white'>View Course <ArrowUpRight className='icon' size={20} /></p>
+                  
                 </div>
                 <div style={{ width: '100%', aspectRatio: '16 / 9', position: 'relative' }}>
                   <SmartImage 
