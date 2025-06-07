@@ -1,7 +1,7 @@
 "use client"
 import React, { useRef } from 'react'
 import Image from 'next/image'
-import { PlayCircle } from 'lucide-react';
+import { ArrowRight, PlayCircle } from 'lucide-react';
 import SmartImage from './SmartImage';
 function Hero() {
   const coursesRef = useRef(null);
@@ -52,11 +52,7 @@ function Hero() {
                         <div className="tg-button-wrap">
                             <button onClick={scrollToCourses} id="explore" className="btn btn-primary btn-action tg-svg d-flex gap-2 align-items-center p-3 px-4 rounded-0">
                                 <span className="text">Explore Courses</span>
-                                <span className="svg-icon" id="svg-14180853459" data-svg-icon="assets/img/btn-arrow.svg">
-                                    <svg width="100%" height="100%" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12.6249 6.81239H1.00011M12.6249 6.81239L7.78123 1.96873M12.6249 6.81239L7.78123 11.656" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                                    </svg>
-                                </span>
+                                <ArrowRight className="icon" size={20} />
                             </button>
                         </div>
                         <div className="banner__phone d-flex gap-3 align-items-center">
