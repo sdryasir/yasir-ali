@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-
+import Link from 'next/link';
 export default function FAQ() {
   useEffect(() => {
     // Load Bootstrap's JS for Collapse functionality
@@ -32,8 +32,7 @@ export default function FAQ() {
   ];
 
   return (
-    <section className="container">
-      <h3 className="mb-4 fw-bold">Frequently Asked Questions</h3>
+    <section>
       <div className="accordion" id="faqAccordion">
         {faqs.map((faq, index) => (
           <div className="accordion-item border rounded mb-3 shadow-sm" key={index}>

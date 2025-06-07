@@ -18,8 +18,8 @@ export async function getBlogs() {
 async function Page() {
     const blogs = await getBlogs();
   return (
-    <div className='container mt-5'>
-        <h1>Blogs</h1>
+    <div className='container my-5'>
+        <h1 className='mb-4'>Latest News & Blogs</h1>
         <div className="row">
             <Suspense fallback="Loading...">
                 {

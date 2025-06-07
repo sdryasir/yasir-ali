@@ -70,7 +70,7 @@ const CourseTabs = ({ publicCategories }) => {
   return (
     <>
       {/* Tabs */}
-      <div className="position-relative">
+      <div className="position-relative course-tabs-wrapper">
         <button
           id="prevBtn"
           className="btn btn-light position-absolute start-0 top-50 translate-middle-y z-3"
@@ -78,7 +78,7 @@ const CourseTabs = ({ publicCategories }) => {
         >‹</button>
         <div
           id="tabsWrapper"
-          className="overflow-auto px-5"
+          className="overflow-auto"
           style={{ whiteSpace: 'nowrap', scrollbarWidth: 'none' }}
         >
           <ul
@@ -121,7 +121,7 @@ const CourseTabs = ({ publicCategories }) => {
         {publicCategories.map((category, index) => (
           <div
             key={category._id}
-            className={`tab-pane fade ${index === 0 ? 'show active' : ''}`}
+            className={`tab-pane bg-light fade ${index === 0 ? 'show active' : ''}`}
             id={`content-${category._id}`}
             role="tabpanel"
             aria-labelledby={`tab-${category._id}`}

@@ -32,7 +32,7 @@ function CSlider({courses}) {
         {courses?.map((course) => (
           <SwiperSlide key={course._id}>
             <Link  key={course._id} href={`/courses/${slugify(course.title)}`} style={{textDecoration:'none'}}>
-              <div className="card card-course h-100 shadow-sm">
+              <div className="card card-course h-100 border-1">
                 <div className="overlay-content">
                   <p className='btn btn-action text-white'>View Course <ArrowUpRight className='icon' size={20} /></p>
                   
