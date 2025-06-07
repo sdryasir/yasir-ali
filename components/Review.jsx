@@ -49,9 +49,9 @@ const reviews = [
 
 function Review() {
   return (
-    <div className='py-5 bg-light'>
+    <div>
         <div className="container">
-            <h3 className='mm-0 mb-4'>Student Reviews?</h3>
+            <h3 className='mm-0 mb-4 text-white'>Student Reviews?</h3>
             <Swiper
                 modules={[Navigation, Pagination]}
                 spaceBetween={20}

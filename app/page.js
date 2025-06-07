@@ -24,8 +24,7 @@ export async function getBlogs() {
   }
 }
 
-export default async function Home() {
-  // const categories = await getCategories(); 
+export default async function Home() { 
   const [categories, blogs] = await Promise.all([
     getCategories(),
     getBlogs()
@@ -42,20 +41,33 @@ export default async function Home() {
   return (
     <>
       <Hero/>
-      <div className="container my-5">
-        <div className="lead-text">
-          <h3 className="mb-4">Explore Our Courses</h3>
-        </div>
-      <CourseTabs publicCategories={publicCategories} />
-    </div>
-      <Review/>
-      <div className="faq-section py-5">
-        <Faq/>
-      </div>
-      <div className="blog-section bg-light py-5">
+      <div className="courses-tab-section sec-space"  style={{"background":"url(/img/tab-section.svg) no-repeat top"}}>
         <div className="container">
           <div className="section-lead d-flex justify-content-between">
-            <h3 className="mb-4 fw-bold">Blogs</h3>
+              <h3 className="mb-4 fw-bold">Explore Courses</h3>
+              <Link href={"/categories"}>View All</Link>
+          </div>
+          <CourseTabs publicCategories={publicCategories} />
+        </div>
+      </div>
+      <div className="review-section sec-space position-relative">
+        <div className="review-inner">
+          <Review/>
+        </div>
+      </div>
+      <section className="faq-section sec-space">
+        <div className="container">
+          <div className="section-lead d-flex justify-content-between">
+              <h3 className="mb-4 fw-bold">Frequently Asked Questions</h3>
+              <Link href={"/faqs"}>View All</Link>
+          </div>
+          <Faq/>
+        </div>
+      </section>
+      <section className="blog-section bg-light sec-space">
+        <div className="container">
+          <div className="section-lead d-flex justify-content-between">
+            <h3 className="mb-4 fw-bold">Latest News & Blogs</h3>
             <Link href={"/blogs"}>View All</Link>
           </div>
           <div className="row">
@@ -73,7 +85,7 @@ export default async function Home() {
             </Suspense>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

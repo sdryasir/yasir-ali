@@ -1,6 +1,7 @@
 import SmartImage from '@/components/SmartImage';
 import React from 'react'
 import moment from 'moment';
+import InnerPageHeader from '@/components/InnerPageHeader';
 
 export async function getBlogBySlug(slug) {
   try {
@@ -20,6 +21,8 @@ async function Page({params}) {
   const blog = await getBlogBySlug(slug);  
   
   return (
+    <>
+    <InnerPageHeader title={"Blog"} />
     <div className='container mt-5'>
         <h1>{blog[0].title}</h1>
         <div className="author-info  d-flex align-items-center mb-3">
@@ -50,6 +53,7 @@ async function Page({params}) {
         </div>
         <div className='mt-5' dangerouslySetInnerHTML={{ __html: blog[0].content }} />
     </div>
+    </>
   )
 }
 

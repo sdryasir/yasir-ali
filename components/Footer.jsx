@@ -7,7 +7,7 @@ function Footer() {
     <div className="footer-wrapper">
       <div className="container">
       
-      <footer className="row row-cols-1 row-cols-sm-2 row-cols-md-5 pt-5 pb-2 mt-5 border-top">
+      <footer className="row row-cols-1 row-cols-sm-2 row-cols-md-5 pt-5 pb-2">
         
         <div className="col-md-5 mb-3">
           
