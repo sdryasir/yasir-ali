@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import InnerPageHeader from '@/components/InnerPageHeader'
 import React from 'react'
 import { getTrainings } from '@/lib/commonFunctions';
