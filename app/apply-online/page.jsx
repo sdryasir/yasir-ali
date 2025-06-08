@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import CourseApplicationForm from '@/components/CourseApplicationForm'
 import InnerPageHeader from '@/components/InnerPageHeader'
 import React from 'react'
