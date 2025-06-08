@@ -5,11 +5,14 @@ import CourseSlider from "@/components/courseslider";
 import CSlider from "@/components/CSlider";
 import CourseTabs from "@/components/CourseTabs";
 import Review from "@/components/Review";
-import { getCategories } from "@/lib/categories";
+import { getCategories } from "@/lib/commonFunctions";
 import Faq from "@/components/Faq";
 import BlogCard from "@/components/BlogCard";
 import Link from "next/link";
 import { Suspense } from "react";
+import { faqs } from "@/data/data";
+
+
 
 export async function getBlogs() {
   try {
@@ -61,7 +64,7 @@ export default async function Home() {
               <h3 className="mb-4 fw-bold">Frequently Asked Questions</h3>
               <Link href={"/faqs"}>View All</Link>
           </div>
-          <Faq/>
+          <Faq faqs={faqs} />
         </div>
       </section>
       <section className="blog-section bg-light sec-space">

@@ -1,6 +1,7 @@
+export const dynamic = "force-dynamic";
 import InnerPageHeader from '@/components/InnerPageHeader'
 import React from 'react'
-import { getCategories } from '@/lib/categories'
+import { getCategories } from '@/lib/commonFunctions'
 import Link from 'next/link';
 
 async function Page() {

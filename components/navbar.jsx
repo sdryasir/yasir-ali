@@ -25,18 +25,20 @@ function Navbar() {
                                 <Link className="nav-link nav-link-custom" aria-current="page" href={"/about"}>About</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link nav-link-custom" href={"/support-center"}>Support Center</Link>
+                                <Link className="nav-link nav-link-custom" href={'/live-trainings'}>Live trainings</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link nav-link-custom" href={"/hire-developer"}>Hire Developer</Link>
                             </li>
                             <li className="nav-item">
+                                <Link className="nav-link nav-link-custom" href={"/support-center"}>Support Center</Link>
+                            </li>
+                            
+                            {/* <li className="nav-item">
                                 <Link className="nav-link nav-link-custom" href={"#"}>Find Instructor</Link>
-                            </li>
+                            </li> */}
+                            
                             {/*<li className="nav-item">
-                                <Link className="nav-link" href={'/ai'}>AI</Link>
-                            </li>
-                            <li className="nav-item">
                                 <Link className="nav-link" href={'/how-to'}>How to</Link>
                             </li>
                             <li className="nav-item">

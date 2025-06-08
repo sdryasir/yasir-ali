@@ -1,8 +1,12 @@
+export const dynamic = "force-dynamic";
 import CourseApplicationForm from '@/components/CourseApplicationForm'
 import InnerPageHeader from '@/components/InnerPageHeader'
 import React from 'react'
+import { getTrainings } from '@/lib/commonFunctions'
 
-function Page() {
+async function Page() {
+  const trainings = await getTrainings();
+
   return (
     <>
         <InnerPageHeader title="Apply Online"/>
@@ -23,19 +27,21 @@ function Page() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>MERN Stack</td>
-                        <td>07-06-2025</td>
-                        <td>Online</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>FrontEnd</td>
-                        <td>10-08-2025</td>
-                        <td>Physical</td>
-                      </tr>
-                      
+                      {
+                        trainings.length === 0 ? (
+                          <tr>
+                            <td colSpan="4" className="text-center">No upcoming batches available</td>
+                          </tr>
+                        ) : (
+                          trainings.map((training, index) => (
+                            <tr key={index}>
+                              <th scope="row">{index + 1}</th>
+                              <td>{training.title}</td>
+                              <td>--</td>
+                              <td>{training.features.mode}</td>
+                            </tr>
+                          ))
+                        )}
                     </tbody>
                   </table>
                 </div>

@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import FAQ from "@/components/Faq";
+import CourseBreakdown from "@/components/CourseBreakDown";
 
 async function getCourse(slug) {
   try {
@@ -30,7 +32,7 @@ async function page({params}) {
           <div className="landing-page-header">
             <h1>{course[0].title}</h1>
             <p>
-              {course[0].description}
+              {course[0].shortDescription}
             </p>
             <div className="rating-wrapper mb-3">
               <div className="b-seller">Best Seller</div>
@@ -43,14 +45,14 @@ async function page({params}) {
               Last Updated: <span>5/2025</span>
             </div>
             <div className="badge">
-              Language(s): <span>Urdu</span>
+              Language(s): <span>{course[0]?.features?.language ? course[0]?.features.language : 'N/A'}</span>
             </div>
             <div className="badge">
-              Certificate: <span>Available</span>
+              Certificate: <span>N/A</span>
             </div>
             <div className="rating-wrapper mt-1">
               <div className="badge">Tags</div>
-              <div className="badge">{course[0].length > 0 && course[0]?.tags?.map((tag, i)=>(
+              <div className="badge">{course[0].tags.length > 0 && course[0].tags?.map((tag, i)=>(
                 <span key={i}>{tag}{i < course[0]?.tags.length - 1 && ', '}</span>
               ))}</div>
             </div>
@@ -67,6 +69,17 @@ async function page({params}) {
                 <p>
                   {course[0].description}
                 </p>
+              </div>
+              <div className="course-breakdown">
+                <h5 className="mt-4">Course Breakdown</h5>
+                {
+                  course[0]?.weeklyBreakdown.length > 0 ?
+                  <>
+                    <p className="text-muted">This course is divided into {course[0]?.weeklyBreakdown.length} weeks, each with its own set of topics and objectives.</p> 
+                    <CourseBreakdown  breakdown={course[0].weeklyBreakdown} />
+                  </>:''
+                }
+                
               </div>
             </div>
             <div className="col-md-4 p-0 sidebar-wrapper">
