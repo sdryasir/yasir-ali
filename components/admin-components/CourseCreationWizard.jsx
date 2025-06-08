@@ -1,0 +1,127 @@
+// CourseCreationWizard.jsx
+'use client';
+
+import { useState } from 'react';
+import Step1BasicInfo from './steps/Step1BasicInfo';
+import Step2MediaPricing from './steps/Step2MediaPricing';
+import Step3Features from './steps/Step3Features';
+import Step4WeeklyBreakdown from './steps/Step4WeeklyBreakdown';
+import Step5FaqsBonuses from './steps/Step5FaqsBonuses';
+import Step6FinalSubmit from './steps/Step6FinalSubmit';
+
+const steps = [
+  'Basic Info',
+  'Media & Pricing',
+  'Features',
+  'Weekly Breakdown',
+  'FAQs & Bonuses',
+  'Final Submit'
+];
+
+export default function CourseCreationWizard({ categories }) {
+  const [step, setStep] = useState(0);
+  const [formData, setFormData] = useState({
+    title: '',
+    slug: '',
+    shortDescription: '',
+    description: '',
+    category: '',
+    level: '',
+    liveTraining: false,
+    tags: [''],
+    thumbnail: null,
+    introVideo: '',
+    price: '',
+    discountedPrice: '',
+    duration: '',
+    instructor: '',
+    features: {
+      mode: 'Online',
+      accessType: 'Paid',
+      recordingAvailable: false,
+      startType: 'On Demand',
+      expectedStartDate: '',
+      prerequisites: [''],
+      language: '',
+    },
+    weeklyBreakdown: [],
+    faqs: [],
+    bonuses: [''],
+    whyTakeThisCourse: [''],
+    activeUsers: 0
+  });
+
+  const goNext = () => setStep((s) => Math.min(s + 1, steps.length - 1));
+  const goBack = () => setStep((s) => Math.max(s - 1, 0));
+
+  const updateFormData = (newData) => {
+    
+    setFormData((prev) => ({ ...prev, ...newData }));
+
+    console.log('Updated Form Data:', formData);
+    
+
+  };
+
+  const onSubmit = async () => {
+    const form = new FormData();
+    form.append('title', formData.title);
+    form.append('slug', formData.slug);
+    form.append('shortDescription', formData.shortDescription);
+    form.append('description', formData.description);
+    form.append('category', formData.category);
+    form.append('instructor', formData.instructor);
+    form.append('price', formData.price);
+    form.append('discountedPrice', formData.discountedPrice);
+    form.append('duration', formData.duration);
+    form.append('level', formData.level);
+    form.append('liveTraining', formData.liveTraining);
+    form.append('introVideo', formData.introVideo);
+
+    // JSON fields
+    form.append('tags', JSON.stringify(formData.tags));
+    form.append('bonuses', JSON.stringify(formData.bonuses));
+    form.append('weeklyBreakdown', JSON.stringify(formData.weeklyBreakdown));
+    form.append('faqs', JSON.stringify(formData.faqs));
+    form.append('features', JSON.stringify(formData.features));
+    form.append('whyTakeThisCourse', JSON.stringify(formData.whyTakeThisCourse));
+
+    // Thumbnail
+    form.append('thumbnail', formData.thumbnail); // file is from <input type="file">
+    
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/courses`, {
+        method: 'POST',
+        body: form,
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create course');
+      }
+
+      const result = await response.json();
+      console.log('Course created successfully:', result);
+      alert('Course created successfully!');
+    } catch (error) {
+      console.error('Error creating course:', error);
+      alert('Failed to create course. Please try again.');
+    }
+  }
+
+  return (
+    <div className="container mt-4">
+      <div className="bg-success p-2 text-white mb-3">
+        <h4>Step {step + 1} of 6 - {steps[step]}</h4>
+      </div>
+
+      <div className="multistep-wrapper bg-light p-4 rounded shadow">
+          {step === 0 && <Step1BasicInfo data={formData} update={updateFormData} categories={categories} goNext={goNext} />}
+          {step === 1 && <Step2MediaPricing data={formData} update={updateFormData} goNext={goNext} goBack={goBack} />}
+          {step === 2 && <Step3Features data={formData} update={updateFormData} goNext={goNext} goBack={goBack} />}
+          {step === 3 && <Step4WeeklyBreakdown data={formData} update={updateFormData} goNext={goNext} goBack={goBack} />}
+          {step === 4 && <Step5FaqsBonuses data={formData} update={updateFormData} goNext={goNext} goBack={goBack} />}
+          {step === 5 && <Step6FinalSubmit data={formData} onSubmit={onSubmit} goBack={goBack} />}
+      </div>
+    </div>
+  );
+}

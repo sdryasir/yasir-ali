@@ -4,7 +4,7 @@ import Image from "next/image";
 
 function Footer() {
   return (
-    <div className="footer-wrapper">
+    <div className="footer-wrapper mt-5">
       <div className="container">
       
       <footer className="row row-cols-1 row-cols-sm-2 row-cols-md-5 pt-5 pb-2">

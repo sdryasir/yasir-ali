@@ -5,12 +5,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import Link from 'next/link';
 import SmartImage from './SmartImage';
 import { ArrowUpRight } from 'lucide-react';
-const slugify = (text) =>
-  text
-    .toString()
-    .toLowerCase()
-    .trim()
-    .replace(/[\s\W-]+/g, '-');
+import { slugify } from '@/lib/commonFunctions';
 
 function CSlider({courses}) {
   return (

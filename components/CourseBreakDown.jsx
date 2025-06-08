@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-export default function FAQ({faqs}) {
+export default function CourseBreakdown({breakdown}) {
   useEffect(() => {
     // Load Bootstrap's JS for Collapse functionality
     import('bootstrap/dist/js/bootstrap.bundle.min.js');
@@ -11,7 +11,7 @@ export default function FAQ({faqs}) {
   return (
     <section>
       <div className="accordion" id="faqAccordion">
-        {faqs.map((faq, index) => (
+        {breakdown.map((item, index) => (
           <div className="accordion-item border rounded mb-3 shadow-sm" key={index}>
             <h2 className="accordion-header">
               <button
@@ -22,7 +22,7 @@ export default function FAQ({faqs}) {
                 aria-expanded="false"
                 aria-controls={`collapse${index}`}
               >
-                <span>{faq.question}</span>
+                <span>{item.weekTitle}</span>
                 
               </button>
             </h2>
@@ -31,7 +31,10 @@ export default function FAQ({faqs}) {
               className="accordion-collapse collapse"
               data-bs-parent="#faqAccordion"
             >
-              <div className="accordion-body text-muted">{faq.answer}</div>
+              <div className="accordion-body text-muted">
+                {item.description}
+                
+               </div>
             </div>
           </div>
         ))}

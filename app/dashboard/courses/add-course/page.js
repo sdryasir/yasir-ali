@@ -3,6 +3,7 @@ import CreateCourseForm from '@/components/admin-components/CreateCourseForm';
 import { createCourse } from '@/actions/createCourse';
 import dbConnect from '@/lib/mongoose';
 import Category from '@/models/Category';
+import CourseCreateWizard from '@/components/admin-components/CourseCreationWizard';
 
 export default async function CoursesPage() {
   await dbConnect();
@@ -10,7 +11,8 @@ export default async function CoursesPage() {
   categories = JSON.parse(JSON.stringify(categories));
   return (
     <div className="p-10">
-      <CreateCourseForm categories={categories} onSubmit={createCourse} />
+      {/* <CreateCourseForm categories={categories} onSubmit={createCourse} /> */}
+      <CourseCreateWizard categories={categories}/>
     </div>
   );
 }
