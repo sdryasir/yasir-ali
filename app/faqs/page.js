@@ -1,7 +1,7 @@
 import Faq from '@/components/Faq'
 import InnerPageHeader from '@/components/InnerPageHeader'
 import React from 'react'
-import { faqs } from '@/data/faqs'
+import { faqs } from '@/data/data'
 
 
 function Page() {
