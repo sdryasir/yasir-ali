@@ -39,7 +39,24 @@ export async function POST(req) {
 
   await newUser.save();
 
-  await sendVerificationEmail(email, fullName, token);
+  try {
+    await sendVerificationEmail(email, fullName, token);
+  } catch (error) {
+    console.error('Email sending error:', error);
+
+    // Example: Check for missing credentials error
+    if (error.message.includes('Missing credentials for "PLAIN"')) {
+      return Response.json(
+        { message: 'Email service is not configured properly' },
+        { status: 500 }
+      );
+    }
+
+    return Response.json(
+      { message: 'Failed to send verification email' },
+      { status: 500 }
+    );
+  }
   
 
   return Response.json({ message: 'User registered successfully' }, { status: 201 });
@@ -72,5 +89,5 @@ export const sendVerificationEmail = async (to, name, token) => {
     `,
   };
 
-  return transporter.sendMail(mailOptions);
+  await transporter.sendMail(mailOptions);
 };
