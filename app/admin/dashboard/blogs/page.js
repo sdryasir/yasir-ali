@@ -46,7 +46,7 @@ async function Page() {
     <div className='container mt-5'>
       <div className='d-flex justify-content-between mb-3'>
         <h2>Blogs</h2>
-        <Link className='btn btn-success' href={'/dashboard/blogs/add-blog'}>Add Blog</Link>
+        <Link className='btn btn-success' href={'/admin/dashboard/blogs/add-blog'}>Add Blog</Link>
       </div>
       <div className="table-responsive">
         <table className="table table-striped table-bordered">

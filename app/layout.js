@@ -1,9 +1,11 @@
+
 import {Poppins, Roboto} from 'next/font/google';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
 import Header from '@/components/header';
 import Footer from '@/components/Footer';
-
+import { SessionProvider } from 'next-auth/react'
+import { Providers } from './Providers';
 
 const roboto = Roboto({
   subsets:["latin"],
@@ -52,9 +54,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${roboto.variable} ${poppins.variable}`}>
-        <Header/>
-        {children}
-        <Footer/>
+        <Providers>
+          <Header/>
+            {children}
+          <Footer/>
+        </Providers>
       </body>
     </html>
   );

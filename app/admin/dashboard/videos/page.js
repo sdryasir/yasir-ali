@@ -6,7 +6,7 @@ function Videos() {
     <div className='container mt-5'>
       <div className='d-flex justify-content-between mb-3'>
         <h2>All Videos</h2>
-        <Link href={'/dashboard/videos/add-video'} className='btn btn-success'>Add Video</Link>
+        <Link href={'/admin/dashboard/videos/add-video'} className='btn btn-success'>Add Video</Link>
       </div>
       <div className="table-responsive">
         <table className="table table-striped table-bordered">
