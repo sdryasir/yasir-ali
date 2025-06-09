@@ -61,7 +61,7 @@ export default function SignupForm() {
 
   return (
     <div className="container mt-5" style={{ maxWidth: '500px' }}>
-      <h2 className="mb-4">Signup</h2>
+      <h2 className="mb-4">Create you account</h2>
 
       {error && <div className="alert alert-danger">{error}</div>}
       {success && <div className="alert alert-success">{success}</div>}

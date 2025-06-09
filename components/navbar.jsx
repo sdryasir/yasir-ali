@@ -32,6 +32,7 @@ export default function Navbar() {
           <Link className="navbar-brand" href="/">
             <Image src="/logo.png" width={187} height={42} alt="logo" />
           </Link>
+          <Link href={'/apply-online'} className='btn text-white d-block d-md-none apply-now-btn'>Apply Now!</Link>
           <button
             onClick={() => setShowMobileMenu(true)}
             className="navbar-toggler"
@@ -39,6 +40,7 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+          
           <div className={`collapse navbar-collapse ${showMobileMenu ? 'show' : ''}`} id="navbarSupportedContent">
             <div className={`btn close-btn p-0 ${showMobileMenu ? 'd-block' : 'd-none'}`} onClick={() => setShowMobileMenu(false)}>
               <Image src="/close.svg" width={35} height={35} alt="close" />
@@ -61,15 +63,13 @@ export default function Navbar() {
 
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a
-                  href="https://calendly.com/sdr-yasir/30min?hide_event_type_details=1&hide_gdpr_banner=1"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/schedule-a-session"
                   className="btn btn-primary btn-action py-2 px-2 d-flex align-items-center rounded-0"
                 >
                   <Calendar1Icon />
                   <span className="ms-2 fw-bold">Schedule a Session</span>
-                </a>
+                </Link>
               </li>
 
               {session?.user ? (

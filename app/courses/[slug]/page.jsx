@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import FAQ from "@/components/Faq";
 import CourseBreakdown from "@/components/CourseBreakDown";
+import SaveSlugClient from "@/components/saveSlug";
 
 async function getCourse(slug) {
   try {
@@ -20,6 +21,8 @@ async function getCourse(slug) {
 async function page({params}) {
   const slug = (await params).slug;
   const course = await getCourse(slug);   
+  
+  
 
   if (!course || course.length === 0) {
     return <div className="container">Course not found</div>;
@@ -84,6 +87,7 @@ async function page({params}) {
             </div>
             <div className="col-md-4 p-0 sidebar-wrapper">
               <div>
+                <SaveSlugClient slug={slug} />
                 <Link href={`/courses/${slug}/learn/${course[0]._id}`}>
                   <div className="sidebar-thumbnail position-relative w-100">
                     <Image

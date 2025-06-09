@@ -2,10 +2,12 @@
 
 import { signIn } from 'next-auth/react'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function LoginPage() {
-  const router = useRouter()
+  const router = useRouter();
+  const searchParams = useSearchParams()
+  const callbackUrl = searchParams.get('callbackUrl') || '/user-profile'
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -19,11 +21,12 @@ export default function LoginPage() {
     const res = await signIn('credentials', {
       username,
       password,
-      redirect: false
+      redirect: false,
+      callbackUrl
     })
 
     if (res.ok) {
-      router.push('/user-profile') // or wherever
+      router.push(callbackUrl) // or wherever
     } else {
       setError('Invalid credentials or unverified/inactive account.')
     }
@@ -34,7 +37,7 @@ export default function LoginPage() {
   return (
     <div className="container d-flex justify-content-center align-items-center my-5" style={{ minHeight: '60vh' }}>
       <div className="card shadow p-4" style={{ maxWidth: '400px', width: '100%' }}>
-        <h3 className="text-center mb-4">LMS Login</h3>
+        <h3 className="text-center mb-4">Login to continue learning</h3>
 
         {error && (
           <div className="alert alert-danger py-2 text-center">{error}</div>
