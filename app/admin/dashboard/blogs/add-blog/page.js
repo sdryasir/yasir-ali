@@ -62,7 +62,8 @@ export default function BlogEditorPage() {
     <div className="container mt-5">
       <h2>Add New Blog</h2>
       <form className="" onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div className='row mb-3'>
+          <div className="col-md-12 mb-3">
           <label className="form-label">Blog Title</label>
           <input
             type="text"
@@ -72,7 +73,7 @@ export default function BlogEditorPage() {
             required
           />
         </div>
-        <div className="mb-3">
+        <div className="col-md-12 mb-3">
           <label className="form-label">Slug</label>
           <input
             type="text"
@@ -82,12 +83,12 @@ export default function BlogEditorPage() {
             required
           />
         </div>
-        <div className="mb-3">
+        <div className="col-md-12 mb-3">
           <label className="form-label">Blog Content</label>
           <TiptapEditor onChange={setContent} />
-          
+
         </div>
-        <div className="mb-3">
+        <div className="col-md-6 mb-3">
           <label className="form-label">Main Image</label>
           <input
             type="file"
@@ -96,7 +97,7 @@ export default function BlogEditorPage() {
             onChange={(e) => setImage(e.target.files[0] || null)}
           />
         </div>
-        <div className="mb-3">
+        <div className="col-md-6 mb-3">
           <label className="form-label">
             Public Status (want to show publicly)
           </label>
@@ -105,6 +106,7 @@ export default function BlogEditorPage() {
             <option value="public">Public</option>
             <option value="private">Private</option>
           </select>
+        </div>
         </div>
         <button
           type="submit"

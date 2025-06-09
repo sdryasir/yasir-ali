@@ -49,7 +49,7 @@ async function Courses() {
       <div className="d-flex justify-content-between mb-3">
         <h2>All Courses</h2>
         <Link
-          href={"/dashboard/courses/add-course"}
+          href={"/admin/dashboard/courses/add-course"}
           className="btn btn-success"
         >
           Add Course

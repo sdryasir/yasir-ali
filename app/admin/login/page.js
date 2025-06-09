@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { LogIn } from 'lucide-react'
 
 export default function LoginPage() {
   const [username, setUsername] = useState('')
@@ -20,7 +21,7 @@ export default function LoginPage() {
     })
 
     if (res.ok) {
-      router.push('/dashboard')
+      router.push('/admin/dashboard')
     } else {
       setError('Invalid credentials')
     }
@@ -31,7 +32,7 @@ export default function LoginPage() {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card p-4">
-            <h3 className="mb-4">Login</h3>
+            <h3 className="mb-4">Admin Login <LogIn /></h3>
             {error && <div className="alert alert-danger">{error}</div>}
             <form onSubmit={handleLogin}>
               <input className="form-control mb-3" placeholder="Username"

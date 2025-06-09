@@ -52,7 +52,7 @@ async function Categories() {
     <div className='container mt-5'>
       <div className='d-flex justify-content-between mb-3'>
         <h2>Course Categories</h2>
-        <Link className='btn btn-success' href={'/dashboard/categories/add-category'}>Add Category</Link>
+        <Link className='btn btn-success' href={'/admin/dashboard/categories/add-category'}>Add Category</Link>
       </div>
       <div className="table-responsive">
         <table className="table table-striped table-bordered">

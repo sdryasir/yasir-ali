@@ -76,8 +76,8 @@ export default async function Home() {
           <div className="row">
             <Suspense fallback="Loading...">
               {
-                blogs.length ==0 ? <p>No Blogs Found</p>:
-                blogs.map((blog,i)=>{
+                blogs?.length ==0 ? <p>No Blogs Found</p>:
+                blogs?.map((blog,i)=>{
                   return (
                     <div key={i} className="col-md-4">
                       <BlogCard blog={blog}/>
