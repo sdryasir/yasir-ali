@@ -677,11 +677,18 @@ img, svg {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50%;
-    z-index: 5;
+    z-index: 0;
 }
 .review-section .swiper{
     z-index: 10!important;
 }
 .sec-space{
     padding: 6rem 0;
+}
+.comment-item{
+    color: var(--bd-theme-black);
+}
+.comment-item:hover{
+    background-color: var(--bd-primary);
+    color: var(--background);
 }

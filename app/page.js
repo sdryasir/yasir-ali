@@ -54,7 +54,11 @@ export default async function Home() {
         </div>
       </div>
       <div className="review-section sec-space position-relative">
-        <div className="review-inner">
+        <div className="container">
+          <div className="section-lead text-white d-flex justify-content-between position-relative">
+              <h3 className="mb-4 fw-bold">Student Reviews & Comments</h3>
+              <Link className="text-white" href={"/reviews-and-comments"}>View All</Link>
+          </div>
           <Review/>
         </div>
       </div>
