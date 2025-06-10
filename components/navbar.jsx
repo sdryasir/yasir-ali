@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar1Icon, UserPlus2Icon } from 'lucide-react'
+import { Calendar1Icon } from 'lucide-react'
 import { useSession, signOut } from 'next-auth/react'
 
 export default function Navbar() {

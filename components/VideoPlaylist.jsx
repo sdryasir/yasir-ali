@@ -78,7 +78,10 @@ export default function VideoPlaylist({ courseId }) {
           )}
           <h5>{selectedVideo?.title}</h5>
           <p>{selectedVideo?.description}</p>
-          <button className='btn btn-info' disabled={true} onClick={()=>handleGenerateQuiz(`https://www.youtube.com/watch?v=${selectedVideo.youtubeId}`)}>Generate Quiz</button>
+          <button className='btn btn-info me-3' disabled={true} onClick={()=>handleGenerateQuiz(`https://www.youtube.com/watch?v=${selectedVideo.youtubeId}`)}>Generate Quiz</button>
+          <button className='btn btn-info me-3' disabled={true}>Ask Question</button>
+          <button className='btn btn-info me-3' disabled={true}>Generate Task</button>
+          <button className='btn btn-info me-3' disabled={true}>Mock Interview</button>
           {quiz && (
             <div className="mt-4">
               <h4>Quiz:</h4>
@@ -101,7 +104,7 @@ export default function VideoPlaylist({ courseId }) {
 
         {/* Playlist */}
         <div className="col-md-3">
-          <h6 className="mb-3">Playlist</h6>
+          <h5 className="bg-dark text-white mb-3 p-3">Playlist</h5>
           <ul className="list-group">
             {videos.map((video,i) => (
               <li
