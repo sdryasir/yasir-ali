@@ -107,6 +107,14 @@ const userSchema = new Schema({
       date: { type: Date, default: Date.now },
     },
   ],
+  pendingEnrollments: [
+  {
+      course: { type: Schema.Types.ObjectId, ref: 'Course' },
+      receiptUrl: String,
+      status: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'pending' },
+      uploadedAt: { type: Date, default: Date.now },
+    }
+  ],
 
   isActive: {
     type: Boolean,

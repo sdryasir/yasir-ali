@@ -88,7 +88,7 @@ async function page({params}) {
             <div className="col-md-4 p-0 sidebar-wrapper">
               <div>
                 <SaveSlugClient slug={slug} />
-                <Link href={`/courses/${slug}/learn/${course[0]._id}`}>
+                <Link href={`/courses/${slug}/enroll/${course[0]._id}`}>
                   <div className="sidebar-thumbnail position-relative w-100">
                     <Image
                       src={course[0].thumbnail}
