@@ -4,6 +4,8 @@ import Link from "next/link";
 import FAQ from "@/components/Faq";
 import CourseBreakdown from "@/components/CourseBreakDown";
 import SaveSlugClient from "@/components/saveSlug";
+import { getServerSession } from 'next-auth'
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 async function getCourse(slug) {
   try {
@@ -17,10 +19,42 @@ async function getCourse(slug) {
     console.error("Fetch failed 11:", error);
   }
 }
+async function getLoggedInUser(userId) {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}`, {
+      cache: 'no-store'
+    })
+
+    if (!res.ok) throw new Error("Failed to fetch current User")
+    return res.json()
+  } catch (error) {
+    console.error("Fetch failed 11:", error);
+  }
+}
 
 async function page({params}) {
   const slug = (await params).slug;
-  const course = await getCourse(slug);   
+  const session = await getServerSession(authOptions)
+  const course = await getCourse(slug);  
+
+  const checkCourseEnrollment = (user)=>{
+    if(user.enrolledCourses && user.enrolledCourses.length>0){
+      if(user.enrolledCourses.includes(course[0]._id)){
+        return true;
+      }
+    }
+    return false;
+  }
+
+
+  let loggedInUser;
+  let isUserEnrolled;
+  if(session){
+    loggedInUser = await getLoggedInUser(session?.user.id);   
+    isUserEnrolled = checkCourseEnrollment(loggedInUser)
+  }
+
+
   
   
 
@@ -113,7 +147,17 @@ async function page({params}) {
                       </h3>
                     </div>
                     <div>
-                      <Link className="btn d-flex justify-content-center fw-bold text-white rounded-0 align-items-center btn-action start-course-btn w-100" href={`/courses/${slug}/learn/${course[0]._id}`}>Start Course</Link>
+                      {
+                        session && isUserEnrolled ? <Link className="btn d-flex justify-content-center fw-bold text-white rounded-0 align-items-center btn-action start-course-btn w-100" href={`/courses/${slug}/learn/${course[0]._id}`}>
+                        Start Course
+                      </Link>:
+                      <Link className="btn d-flex justify-content-center fw-bold text-white rounded-0 align-items-center btn-action start-course-btn w-100" href={`/courses/${slug}/enroll/${course[0]._id}`}>
+                        Enroll this Course
+                      </Link>
+                      }
+                      {/* <Link className="btn d-flex justify-content-center fw-bold text-white rounded-0 align-items-center btn-action start-course-btn w-100" href={`/courses/${slug}/enroll/${course[0]._id}`}>
+                        Enroll this Course
+                      </Link> */}
                     </div>
                     <p className="fw-bold mt-4">What you will get:</p>
                     <div className="mt-2 border-bottom pb-4">

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { redirect } from "next/navigation";
 import { useSession } from 'next-auth/react'
 
 export default function EnrollPage({ courseId }) {
@@ -10,7 +11,7 @@ export default function EnrollPage({ courseId }) {
   const [course, setCourse] = useState(null)
   const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [userId, setUserId] = useState(session.user.id);
+  const [userId, setUserId] = useState(session?.user?.id || null);
   
   // Fetch course data
   useEffect(() => {
@@ -42,7 +43,8 @@ export default function EnrollPage({ courseId }) {
   const handleEnroll = async () => {
     try {
       if (!userId) {
-        alert('User not logged in')
+        const callbackUrl = `/courses/${course.slug}`;
+        router.push(`/auth/login?callbackUrl=${encodeURIComponent(callbackUrl)}`);
         return
       }
 
@@ -70,10 +72,11 @@ export default function EnrollPage({ courseId }) {
       })
 
       const data = await res.json()
-      alert(data.message)
+      alert("hhhhhhh", data.message)
 
       if (res.ok && course.features.accessType === 'Free') {
         router.push(`/dashboard/courses/${course.id}`)
+        
       }
 
     } catch (err) {
@@ -84,7 +87,7 @@ export default function EnrollPage({ courseId }) {
     }
   }
 
-  if (!course) return <div>Loading course...</div>
+  if (!course) return <div className='container mt-5'>Loading course...</div>
 
   return (
     <div className="container mt-5">

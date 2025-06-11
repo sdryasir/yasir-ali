@@ -12,6 +12,8 @@ export async function POST(req) {
   if (!course) return NextResponse.json({ error: 'Course not found' }, { status: 404 })
 
   if (course.features.accessType === 'Free') {
+    
+    
     await User.findByIdAndUpdate(userId, {
       $addToSet: { enrolledCourses: courseId }
     })
