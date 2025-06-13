@@ -8,7 +8,7 @@ export default function ProfileSidebar({ currentPath }) {
   const { data: session } = useSession();
   return (
     <div className="card shadow-sm">
-      <div className="card-body text-center">
+      <div className="card-body p-0 pt-3 text-center">
         {session?.user?.image ? (
           <Image
             src={session?.user?.image}
@@ -26,8 +26,8 @@ export default function ProfileSidebar({ currentPath }) {
           </span>
         )}
         <h5 className="mb-3">{session?.user?.name}</h5>
-
-        <ul className="nav flex-column">
+        <hr className="mb-0" />
+        <ul className="nav user-profile-nav flex-column">
           <li className="nav-item">
             <Link
               href="/user-profile/personal"

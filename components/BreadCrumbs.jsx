@@ -31,9 +31,17 @@ export default function Breadcrumbs() {
             aria-current={i === breadcrumbs.length - 1 ? 'page' : undefined}
           >
             {i === breadcrumbs.length - 1 ? (
-              crumb.label
+              <span title={crumb.label}>
+                {crumb.label.length > 15 ? `${crumb.label.slice(0, 15)}...` : crumb.label}
+              </span>
             ) : (
-              <Link href={crumb.href} className="text-decoration-none">{crumb.label}</Link>
+              <Link
+                href={crumb.href}
+                className="text-decoration-none"
+                title={crumb.label}
+              >
+                {crumb.label.length > 15 ? `${crumb.label.slice(0, 15)}...` : crumb.label}
+              </Link>
             )}
           </li>
         ))}

@@ -13,7 +13,7 @@ export default function AccountDetails() {
       <div className="card-header">Account Details</div>
       <div className="card-body">
         <p><strong>Joined:</strong> {readableDate}</p>
-        <p><strong>Status:</strong> {user.isActive?'Active':'Inactive'}</p>
+        <p><strong>Status:</strong> <span className={`${user.isActive? 'text-success': 'text-danger'} fw-bold`}>{user.isActive?'Active':'Inactive'}</span></p>
         <p><strong>Role:</strong> {user.role.charAt(0).toUpperCase() + user.role.slice(1)}</p>
       </div>
     </div>

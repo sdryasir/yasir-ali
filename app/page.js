@@ -50,13 +50,13 @@ export default async function Home() {
               <h3 className="mb-4 fw-bold">Explore Courses</h3>
               <Link href={"/categories"}>View All</Link>
           </div>
-          {/* <CourseTabs publicCategories={publicCategories} /> */}
+          <CourseTabs publicCategories={publicCategories} />
         </div>
       </div>
       <div className="review-section sec-space position-relative">
         <div className="container">
           <div className="section-lead text-white d-flex justify-content-between position-relative">
-              <h3 className="mb-4 fw-bold">Student Reviews & Comments</h3>
+              <h3 className="mb-4 fw-bold">Reviews & Comments</h3>
               <Link className="text-white" href={"/reviews-and-comments"}>View All</Link>
           </div>
           <Review/>
@@ -65,7 +65,7 @@ export default async function Home() {
       <section className="faq-section sec-space">
         <div className="container">
           <div className="section-lead d-flex justify-content-between">
-              <h3 className="mb-4 fw-bold">Frequently Asked Questions</h3>
+              <h3 className="mb-4 fw-bold">FAQs</h3>
               <Link href={"/faqs"}>View All</Link>
           </div>
           <Faq faqs={faqs} />
@@ -74,7 +74,7 @@ export default async function Home() {
       <section className="blog-section bg-light sec-space">
         <div className="container">
           <div className="section-lead d-flex justify-content-between">
-            <h3 className="mb-4 fw-bold">Latest News & Blogs</h3>
+            <h3 className="mb-4 fw-bold">News & Blogs</h3>
             <Link href={"/blogs"}>View All</Link>
           </div>
           <div className="row">

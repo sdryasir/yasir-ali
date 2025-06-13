@@ -127,10 +127,11 @@ img, svg {
     margin-left: 28px;
     z-index: 1;
 }
+
 .banner__images .shape:nth-child(2) {
     max-width: 100px;
-    top: 0;
-    left: 0;
+    top: 100px;
+    left: 100px;
 }
 .banner__images .shape {
     position: absolute;
@@ -139,7 +140,7 @@ img, svg {
 
 .banner__images .shape:nth-child(3) {
     max-width: 100px;
-    left: -87px;
+    left: 54px;
     bottom: 25%;
 }
 .banner__fact-item {
@@ -338,7 +339,7 @@ img, svg {
         box-shadow: 0 0 0 0 rgba(251, 140, 0, .5);
     }
     70% {
-        box-shadow: 0 0 0 45px rgba(251, 140, 0, 0);
+        box-shadow: 0 0 0 30px rgba(251, 140, 0, 0);
     }
     100% {
         box-shadow: 0 0 0 0 rgba(251, 140, 0, 0);
@@ -698,4 +699,19 @@ img, svg {
 }
 .avatar-list-item{
     margin-left: -6px;
+}
+
+.user-profile-nav .nav-item .nav-link{
+    font-weight: bold!important;
+    text-align: left;
+    color: var(--bd-theme-black)!important;
+}
+.user-profile-nav .nav-item .nav-link.active{
+    background-color: var(--bd-primary)!important;
+    color: #fff!important;
+    font-weight: bold!important;
+}
+.user-profile-nav .nav-item:hover{
+    background-color: var(--bd-teal);
+    color: #fff;
 }
