@@ -50,7 +50,7 @@ export default async function Home() {
               <h3 className="mb-4 fw-bold">Explore Courses</h3>
               <Link href={"/categories"}>View All</Link>
           </div>
-          <CourseTabs publicCategories={publicCategories} />
+          {/* <CourseTabs publicCategories={publicCategories} /> */}
         </div>
       </div>
       <div className="review-section sec-space position-relative">

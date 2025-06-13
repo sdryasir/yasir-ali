@@ -1,9 +1,5 @@
-import React from 'react'
+import { redirect } from 'next/navigation';
 
-function page() {
-  return (
-    <div className='container mt-5'>User Profile Page</div>
-  )
+export default function ProfilePage() {
+  redirect('/user-profile/personal');
 }
-
-export default page

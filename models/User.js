@@ -26,8 +26,6 @@ const userSchema = new Schema({
 
   password: {
     type: String,
-    required: true,
-    minlength: 6,
   },
 
   role: {
@@ -115,6 +113,7 @@ const userSchema = new Schema({
       uploadedAt: { type: Date, default: Date.now },
     }
   ],
+  provider: { type: String, default: 'credentials' },
 
   isActive: {
     type: Boolean,
@@ -126,3 +125,4 @@ const userSchema = new Schema({
 
 
 export default mongoose.models.User || mongoose.model("User", userSchema)
+

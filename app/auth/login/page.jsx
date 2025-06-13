@@ -3,6 +3,8 @@
 import { signIn } from 'next-auth/react'
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation';
+import Image from 'next/image';
+import { Loader2 } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -11,7 +13,8 @@ export default function LoginPage() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [loadingGoogle, setLoadingGoogle] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -32,6 +35,12 @@ export default function LoginPage() {
     }
 
     setLoading(false)
+  }
+
+  const handleGoogleLogin = async ()=>{
+    setLoadingGoogle(true);
+    
+    await signIn('google',{callbackUrl: '/user-profile'})
   }
 
   return (
@@ -74,7 +83,21 @@ export default function LoginPage() {
             className="btn btn-primary w-100"
             disabled={loading}
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? 'Signing in...' : 'Sign in'}
+          </button>
+          <br />
+          <button type='button' disabled={loadingGoogle} className='btn btn-outline-primary mt-3 w-100 justify-content-center btn-google d-flex align-items-center' onClick={handleGoogleLogin}>
+            {loading ? (
+              <>
+                <Loader2 className="animate-spin w-4 h-4" />
+                Signing in...
+              </>
+            ) : (
+              <>
+                <Image src={'/icons/google-icon-logo.svg'} alt='google-logo' width={20} height={20}/> 
+                Sign in with Google
+              </>
+            )}
           </button>
         </form>
 

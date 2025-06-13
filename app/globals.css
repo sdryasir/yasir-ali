@@ -98,12 +98,16 @@
 .btn-action {
     background-color: var(--bd-primary)!important;
     border: none!important;
+    border: 1px solid transparent!important;
     border-radius: 4px!important;
 }
 .btn-action:hover {
     background-color: transparent!important;
     border: 1px solid var(--bd-primary)!important;
     color: var(--bd-primary)!important;
+}
+.btn-action:hover .icon{
+    padding-left: 4px;
 }
 .start-course-btn{
     height: 54px;
@@ -691,4 +695,7 @@ img, svg {
 .comment-item:hover{
     background-color: var(--bd-primary);
     color: var(--background);
+}
+.avatar-list-item{
+    margin-left: -6px;
 }

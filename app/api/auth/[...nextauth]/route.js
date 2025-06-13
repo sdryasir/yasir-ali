@@ -1,4 +1,5 @@
 import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import dbConnect from '@/lib/mongoose';
 import User from '@/models/User';
@@ -6,6 +7,13 @@ import bcrypt from 'bcryptjs';
 
 export const authOptions = {
   providers: [
+    // 🔹 Google Provider
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+    }),
+
+    // 🔹 Credentials Provider
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
@@ -15,7 +23,6 @@ export const authOptions = {
       async authorize(credentials) {
         await dbConnect();
 
-        // Find user by email or username
         const user = await User.findOne({
           $or: [
             { username: credentials.username },
@@ -23,24 +30,13 @@ export const authOptions = {
           ]
         });
 
-        if (!user) {
-          throw new Error('Invalid credentials');
-        }
+        if (!user) throw new Error('Invalid credentials');
 
         const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
-        if (!isPasswordValid) {
-          throw new Error('Invalid credentials');
-        }
+        if (!isPasswordValid) throw new Error('Invalid credentials');
 
-        // ✅ Check email verification
-        if (!user.emailVerified) {
-          throw new Error('Please verify your email before logging in.');
-        }
-
-        // ✅ Check active status
-        if (!user.isActive) {
-          throw new Error('Your account has been deactivated. Contact support.');
-        }
+        if (!user.emailVerified) throw new Error('Please verify your email before logging in.');
+        if (!user.isActive) throw new Error('Your account has been deactivated. Contact support.');
 
         return {
           id: user._id.toString(),
@@ -51,22 +47,49 @@ export const authOptions = {
       }
     })
   ],
+
   pages: {
     signIn: '/auth/login',
     error: '/api/auth/error'
   },
+
   session: {
     strategy: 'jwt'
   },
+
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.role = user.role;
+    async jwt({ token, user, account }) {
+      await dbConnect();
+
+      // 🔹 Handle first-time Google login
+      if (account && user?.email) {
+        let existingUser = await User.findOne({ email: user.email });
+
+        if (!existingUser) {
+          const newUser = await User.create({
+            fullName: user.name,
+            email: user.email,
+            username: user.email.split('@')[0],
+            emailVerified: true,
+            isActive: true,
+            role: 'student',
+            password: '',
+            provider: account.provider
+          });
+
+          token.id = newUser._id.toString();
+          token.role = newUser.role;
+        } else {
+          token.id = existingUser._id.toString();
+          token.role = existingUser.role;
+        }
+
         token.email = user.email;
       }
+
       return token;
     },
+
     async session({ session, token }) {
       session.user.id = token.id;
       session.user.role = token.role;
@@ -74,7 +97,28 @@ export const authOptions = {
       return session;
     }
   },
-  secret: process.env.NEXTAUTH_SECRET
+
+  secret: process.env.NEXTAUTH_SECRET,
+
+  events: {
+    async signIn({ user }) {
+      await dbConnect();
+
+      const existingUser = await User.findOne({ email: user.email });
+      if (!existingUser) {
+        await User.create({
+          fullName: user.name,
+          email: user.email,
+          username: user.email.split('@')[0],
+          emailVerified: true,
+          isActive: true,
+          role: 'student',
+          password: '',
+          provider: 'google'
+        });
+      }
+    }
+  }
 };
 
 const handler = NextAuth(authOptions);
