@@ -101,6 +101,7 @@ const userSchema = new Schema({
   loginHistory: [
     {
       ip: String,
+      location: String,
       userAgent: String,
       date: { type: Date, default: Date.now },
     },
@@ -122,6 +123,14 @@ const userSchema = new Schema({
 }, {
   timestamps: true,
 });
+
+userSchema.pre('save', function (next) {
+  if (this.loginHistory && this.loginHistory.length > 5) {
+    this.loginHistory = this.loginHistory.slice(-5); // Keep last 10
+  }
+  next();
+});
+
 
 
 export default mongoose.models.User || mongoose.model("User", userSchema)

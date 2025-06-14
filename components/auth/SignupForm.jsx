@@ -1,6 +1,10 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Tooltip } from 'react-tooltip'
+import 'react-tooltip/dist/react-tooltip.css'
+import { HelpCircle } from 'lucide-react';
 
 export default function SignupForm() {
   const [formData, setFormData] = useState({
@@ -15,7 +19,7 @@ export default function SignupForm() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
-
+  const router = useRouter();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -42,8 +46,19 @@ export default function SignupForm() {
         throw new Error(data.message || 'Signup failed');
         setLoading(false);
       }
+      // const message = (
+      //   <>
+      //     <strong>Account created successfully.</strong><br />
+      //     <p>To activate your account, please check your email for the verification link.</p>
+      //     <p><strong>Note:</strong>You will not be able to login unless you verify through email in <strong>next 1 hour</strong>
+      //     <br />
+      //     if you can't access email, you can try logging in using google
+      //     </p>
+      //   </>
+      // );
+      // setSuccess(message);
+      router.push('/auth/signup-success');
 
-      setSuccess('Account created successfully, To activate your account, please check your email for the verification link.');
       setFormData({
         fullName: '',
         email: '',
@@ -58,10 +73,11 @@ export default function SignupForm() {
       setLoading(false);
     }
   };
+  
 
   return (
     <div className="container mt-5" style={{ maxWidth: '500px' }}>
-      <h2 className="mb-4">Create you account</h2>
+      <h2 className="mb-4">Create Account</h2>
 
       {error && <div className="alert alert-danger">{error}</div>}
       {success && <div className="alert alert-success">{success}</div>}
@@ -80,7 +96,21 @@ export default function SignupForm() {
         </div>
 
         <div className="mb-3">
-          <label className="form-label">Email address</label>
+          <label className="form-label">Email address 
+
+            <HelpCircle id="email-label-tip" className='ms-2' size={14}/>
+
+            <Tooltip
+              anchorSelect="#email-label-tip"
+              place="top"
+            >
+            <div style={{ whiteSpace: 'pre-line' }}>
+              You will <strong>receive activation link</strong> on this email.
+              {'\n'}
+              Make sure it is correct and you can <strong>access your email account</strong>.
+            </div>
+            </Tooltip>
+          </label>
           <input
             name="email"
             type="email"
@@ -147,6 +177,7 @@ export default function SignupForm() {
         <Link href="/auth/login" className="d-block text-center mt-3">
           Already have an account? Login
         </Link>
+       
       </form>
     </div>
   );

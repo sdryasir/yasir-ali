@@ -12,7 +12,7 @@ export default function EnrolledCourses() {
 
   useEffect(() => {
     const fetchCourses = async () => {
-      if (status === 'authenticated' && user.enrolledCourses.length) {
+      if (status === 'authenticated' && user?.enrolledCourses.length) {
         try {
           const res = await fetch('/api/courses/enrolled', {
             method: 'POST',

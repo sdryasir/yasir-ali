@@ -41,7 +41,7 @@ async function Categories() {
         throw new Error(`Delete failed: ${res.status}\n${text}`);
       }
 
-      revalidatePath('/dashboard/categories');
+      revalidatePath('/admin/dashboard/categories');
     } catch (error) {
       console.error("failed to delete category", error);
       

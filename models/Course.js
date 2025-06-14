@@ -8,21 +8,25 @@ const FaqSchema = new mongoose.Schema({
   answer: String,
 }, { _id: false });
 
-const WeeklyBreakdownSchema = new mongoose.Schema({
-  weekTitle: { type: String, required: true },
+const TopicBreakdownSchema = new mongoose.Schema({
+  topicTitle: { type: String, required: true },
   description: String,
   githubLink: String,
   assignmentTitle: String,
+  videos:[{
+    title:String,
+    link:String,
+    videoLength:String,
+    previewAvailable:Boolean
+  }]
 }, { _id: false });
 
 const FeaturesSchema = new mongoose.Schema({
-  mode: { type: String, enum: ['Online', 'Physical', 'Hybrid'], default: 'Online' },
-  accessType: { type: String, enum: ['Free', 'Paid'], default: 'Paid' },
-  recordingAvailable: { type: Boolean, default: false },
-  startType: { type: String, enum: ['Expected Date', 'On Demand'], default: 'On Demand' },
-  expectedStartDate: Date,
+  mode: { type: String, enum: ['Online'], default: 'Online' },
+  accessType: { type: String, enum: ['Free', 'Paid'], default: 'Free' },
+  startType: { type: String, enum: ['On Demand'], default: 'On Demand' },
   prerequisites: [String],
-  language: String,
+  language: {type: String, enum: ['Urdu', 'English'], default: 'Urdu'},
 }, { _id: false });
 
 const CourseSchema = new mongoose.Schema({
@@ -31,21 +35,19 @@ const CourseSchema = new mongoose.Schema({
   shortDescription: String,
   description: String,
   category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
-  videos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Video' }],
-  instructor: String,
-  price: Number,
-  discountedPrice: Number,
-  duration: String,
   level: String,
-  liveTraining: { type: Boolean, default: false },
   tags: [String],
   thumbnail: String,
   introVideo: String,
-  bonuses: [String],
-  activeUsers: { type: Number, default: 0 },
-  weeklyBreakdown: [WeeklyBreakdownSchema],
-  faqs: [FaqSchema],
+  price: Number,
+  discountedPrice: Number,
+  duration: String,
+  instructor: String,
   features: FeaturesSchema,
+  topicBreakdown: [TopicBreakdownSchema],
+  faqs: [FaqSchema],
+  bonuses: [String],
+  videos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Video' }],
   whyTakeThisCourse: [String],
   createdAt: { type: Date, default: getCurrentDate },
 })

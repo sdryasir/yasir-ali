@@ -110,10 +110,10 @@ async function page({params}) {
               <div className="course-breakdown">
                 <h5 className="mt-4">Course Breakdown</h5>
                 {
-                  course[0]?.weeklyBreakdown.length > 0 ?
+                  course[0]?.topicBreakdown.length > 0 ?
                   <>
-                    <p className="text-muted">This course is divided into {course[0]?.weeklyBreakdown.length} weeks, each with its own set of topics and objectives.</p> 
-                    <CourseBreakdown  breakdown={course[0].weeklyBreakdown} />
+                    <p className="text-muted">This course is divided into {course[0]?.topicBreakdown.length} weeks, each with its own set of topics and objectives.</p> 
+                    <CourseBreakdown  breakdown={course[0].topicBreakdown} />
                   </>:''
                 }
                 

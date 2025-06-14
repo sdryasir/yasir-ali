@@ -35,7 +35,7 @@ export default function AddCategoryPage() {
       if (res.ok) {
         setLoading(false);
         setMessage(`✅ Image uploaded:`);
-        router.push("/dashboard/categories");
+        router.push("/admin/dashboard/categories");
       } else {
         setLoading(false);
         setMessage(`❌ Error: ${data.error}`);

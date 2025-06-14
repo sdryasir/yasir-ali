@@ -26,7 +26,7 @@ export default function Step3Features({ data, update, goNext, goBack }) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        if (features.mode === 'Online' || features.mode === 'Physical' || features.mode === 'Hybrid') {
+        if (features.mode === 'Online') {
           goNext();
         } else {
           alert('Select mode');
@@ -43,8 +43,6 @@ export default function Step3Features({ data, update, goNext, goBack }) {
             required
           >
             <option value="Online">Online</option>
-            <option value="Physical">Physical</option>
-            <option value="Hybrid">Hybrid</option>
           </select>
         </div>
 
@@ -71,33 +69,24 @@ export default function Step3Features({ data, update, goNext, goBack }) {
             onChange={(e) => setFeatures((prev) => ({ ...prev, startType: e.target.value }))}
             required
           >
-            <option value="Expected Date">Expected Date</option>
             <option value="On Demand">On Demand</option>
           </select>
         </div>
 
         <div className="col-md-3 mb-3">
           <label className="form-label">Language</label>
-          <input
-            type="text"
-            className="form-control"
+          <select
+            className="form-select"
             value={features.language}
             onChange={(e) => setFeatures((prev) => ({ ...prev, language: e.target.value }))}
-            placeholder="e.g., English"
-          />
+            required
+          >
+            <option value="Urdu">Urdu</option>
+            <option value="English">English</option>
+          </select>
+
         </div>
 
-        {features.startType === 'Expected Date' && (
-          <div className="mb-3">
-            <label className="form-label">Expected Start Date</label>
-            <input
-              type="date"
-              className="form-control"
-              value={features.expectedStartDate ? features.expectedStartDate.split('T')[0] : ''}
-              onChange={(e) => setFeatures((prev) => ({ ...prev, expectedStartDate: e.target.value }))}
-            />
-          </div>
-        )}
 
         <div className="mb-3">
           <label className="form-label">Prerequisites</label>
@@ -127,7 +116,7 @@ export default function Step3Features({ data, update, goNext, goBack }) {
         </div>
 
         
-        <div className="col-md-3">
+        {/* <div className="col-md-3">
           <div className="form-check">
             <input
               className="form-check-input"
@@ -140,7 +129,7 @@ export default function Step3Features({ data, update, goNext, goBack }) {
               Recording Available
             </label>
           </div>
-        </div>
+        </div> */}
         
 
       </div>

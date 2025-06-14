@@ -44,7 +44,7 @@ export async function POST(req) {
     // Parse JSON fields
     const tags = JSON.parse(formData.get('tags') || '[]');
     const bonuses = JSON.parse(formData.get('bonuses') || '[]');
-    const weeklyBreakdown = JSON.parse(formData.get('weeklyBreakdown') || '[]');
+    const topicBreakdown = JSON.parse(formData.get('topicBreakdown') || '[]');
     const faqs = JSON.parse(formData.get('faqs') || '[]');
     const features = JSON.parse(formData.get('features') || '{}');
     const whyTakeThisCourse = JSON.parse(formData.get('whyTakeThisCourse') || '[]');
@@ -85,7 +85,7 @@ export async function POST(req) {
       thumbnail: thumbnailUrl,
       introVideo,
       bonuses,
-      weeklyBreakdown,
+      topicBreakdown,
       faqs,
       features,
       whyTakeThisCourse,

@@ -37,35 +37,41 @@ const CourseTabs = ({ publicCategories }) => {
     fetchCourses();
   }, [publicCategories]);
 
+  
   useEffect(() => {
-    const wrapper = document.getElementById("tabsWrapper");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
+    if(publicCategories.length>0){
+      const wrapper = document.getElementById("tabsWrapper");
+          const prevBtn = document.getElementById("prevBtn");
+          const nextBtn = document.getElementById("nextBtn");
 
-    const scrollAmount = 150;
+          const scrollAmount = 150;
 
-    const scrollLeft = () => wrapper.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-    const scrollRight = () => wrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
+          const scrollLeft = () => wrapper.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+          const scrollRight = () => wrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
 
-    const updateButtons = () => {
-      const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
-      prevBtn.style.display = wrapper.scrollLeft > 10 ? "block" : "none";
-      nextBtn.style.display = wrapper.scrollLeft < maxScroll - 10 ? "block" : "none";
-    };
+          const updateButtons = () => {
+            const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+            prevBtn.style.display = wrapper.scrollLeft > 10 ? "block" : "none";
+            nextBtn.style.display = wrapper.scrollLeft < maxScroll - 10 ? "block" : "none";
+          };
 
-    prevBtn.addEventListener("click", scrollLeft);
-    nextBtn.addEventListener("click", scrollRight);
-    wrapper.addEventListener("scroll", updateButtons);
-    window.addEventListener("resize", updateButtons);
-    updateButtons();
+          prevBtn.addEventListener("click", scrollLeft);
+          nextBtn.addEventListener("click", scrollRight);
+          wrapper.addEventListener("scroll", updateButtons);
+          window.addEventListener("resize", updateButtons);
+          updateButtons();
 
-    return () => {
-      prevBtn.removeEventListener("click", scrollLeft);
-      nextBtn.removeEventListener("click", scrollRight);
-      wrapper.removeEventListener("scroll", updateButtons);
-      window.removeEventListener("resize", updateButtons);
-    };
+          return () => {
+            prevBtn.removeEventListener("click", scrollLeft);
+            nextBtn.removeEventListener("click", scrollRight);
+            wrapper.removeEventListener("scroll", updateButtons);
+            window.removeEventListener("resize", updateButtons);
+          };
+    }
+    
   }, []);
+
+  if (publicCategories.length === 0) return <p>No categories/Courses found.</p>;
 
   return (
     <>

@@ -715,3 +715,18 @@ img, svg {
     background-color: var(--bd-teal);
     color: #fff;
 }
+.tiptap-toolbar-btn{
+    border: none;
+    height: 28px;
+}
+.tiptap-toolbar-btn:hover{
+    background-color: #ddd;
+}
+.tiptap-toolbar-txt{
+    width: 50px!important;
+    height: 28px;
+    border: 1px solid #ddd;
+}
+.tiptap-toolbar-txt:focus{
+    outline: none;
+}

@@ -37,10 +37,6 @@ export default async function Home() {
 
   const publicCategories = categories?.filter(c => c.status === 'public') || [];
 
-  if (!categories) return <p>Loading categories...</p>;
-  if (publicCategories.length === 0) return <p>No categories found.</p>;
-
-
   return (
     <>
       <Hero/>

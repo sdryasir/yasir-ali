@@ -18,12 +18,13 @@ export default function ProfileSidebar({ currentPath }) {
             className="rounded-circle me-2"
           />
         ) : (
-          <span
-            className="me-2 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
-            style={{ width: 30, height: 30 }}
+          <div className="mx-auto bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fs-1"
+            style={{ width: 100, height: 100 }}
           >
-            {session?.user?.name?.charAt(0).toUpperCase() || "U"}
-          </span>
+            <div>
+              {session?.user?.name?.charAt(0).toUpperCase() || "U"}
+            </div>
+          </div>
         )}
         <h5 className="mb-3">{session?.user?.name}</h5>
         <hr className="mb-0" />

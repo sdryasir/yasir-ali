@@ -32,66 +32,66 @@ const MenuBar = ({ editor }) => {
 
   return (
     <div className="btn-toolbar flex-wrap" role="toolbar">
-      <div className="btn-group me-1">
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().toggleBold().run()}>
+      <div className="tiptap-toolbar-btn-grp">
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().toggleBold().run()}>
           <BoldIcon />
         </button>
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().toggleItalic().run()}>
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().toggleItalic().run()}>
           <LucideItalic/>
         </button>
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().toggleUnderline().run()}>
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().toggleUnderline().run()}>
           <UnderlineIcon/>
         </button>
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().toggleStrike().run()}>
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().toggleStrike().run()}>
           <Strikethrough />
         </button>
       </div>
 
-      <div className="btn-group me-1">
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().setParagraph().run()}>
+      <div className="tiptap-toolbar-btn-grp">
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().setParagraph().run()}>
           <ParkingSquare />
         </button>
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}>
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}>
           <Heading1 />
         </button>
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}>
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}>
           <Heading2 />
         </button>
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}>
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}>
           <Heading3/>
         </button>
       </div>
 
-      <div className="btn-group me-1">
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().toggleBulletList().run()}>
+      <div className="tiptap-toolbar-btn-grp">
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().toggleBulletList().run()}>
           <List />
         </button>
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().toggleOrderedList().run()}>
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().toggleOrderedList().run()}>
           <ListOrdered />
         </button>
       </div>
 
-      <div className="btn-group me-1">
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().toggleBlockquote().run()}>
+      <div className="tiptap-toolbar-btn-grp">
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().toggleBlockquote().run()}>
           <QuoteIcon/>
         </button>
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().toggleCodeBlock().run()}>
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().toggleCodeBlock().run()}>
           <Code2 />
         </button>
       </div>
 
-      <div className="btn-group me-1">
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().undo().run()}>
+      <div className="tiptap-toolbar-btn-grp">
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().undo().run()}>
           <Undo />
         </button>
-        <button className="btn btn-outline-secondary rounded-0" onClick={() => editor.chain().focus().redo().run()}>
+        <button className="tiptap-toolbar-btn" onClick={() => editor.chain().focus().redo().run()}>
           <Redo />
         </button>
       </div>
 
-      <div className="btn-group me-1">
+      <div className="tiptap-toolbar-btn-grp">
         <button
-          className="btn btn-outline-secondary rounded-0"
+          className="tiptap-toolbar-btn"
           onClick={() => {
             const url = prompt('Enter URL')
             if (url) {
@@ -102,7 +102,7 @@ const MenuBar = ({ editor }) => {
           <Link2 />
         </button>
         <button
-          className="btn btn-outline-secondary rounded-0"
+          className="tiptap-toolbar-btn"
           onClick={() => {
             const url = prompt('Enter image URL')
             if (url) {
@@ -113,9 +113,9 @@ const MenuBar = ({ editor }) => {
           <ImageDown />
         </button>
       </div>
-      <div className="button-group">
+      <div className="tiptap-toolbar-btn">
         <input
-          className="form-control"
+          className="tiptap-toolbar-txt"
           style={{ width: '100px', display: 'inline-block' }}
           id="width"
           type="number"
@@ -126,7 +126,7 @@ const MenuBar = ({ editor }) => {
           onChange={event => setWidth(event.target.value)}
         />
         <input
-          className="form-control"
+          className="tiptap-toolbar-txt"
           style={{ width: '100px', display: 'inline-block' }}
           id="height"
           type="number"
@@ -136,7 +136,7 @@ const MenuBar = ({ editor }) => {
           value={height}
           onChange={event => setHeight(event.target.value)}
         />
-        <button className='btn btn-outline-secondary rounded-0' id="add" onClick={addYoutubeVideo}>Add YouTube video</button>
+        <button className='tiptap-toolbar-btn' id="add" onClick={addYoutubeVideo}>YouTube Video</button>
       </div>
     </div>
   )

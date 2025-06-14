@@ -30,6 +30,10 @@ export default function Step1BasicInfo({ data, update, categories, goNext }) {
   const addTag = () => setTags([...tags, '']);
   const removeTag = (index) => setTags(tags.filter((_, i) => i !== index));
 
+  const onChange = (val)=>{
+    update({ description: val });    
+  }
+
   return (
     <form
       onSubmit={(e) => {
@@ -43,7 +47,7 @@ export default function Step1BasicInfo({ data, update, categories, goNext }) {
     >
       <div className="row">
         <div className="col-md-6 mb-3">
-          <label className="form-label">Title *</label>
+          <label className="form-label">Course Title *</label>
           <input
             type="text"
             className="form-control"
@@ -70,14 +74,14 @@ export default function Step1BasicInfo({ data, update, categories, goNext }) {
 
         <div className="col-md-12 mb-3">
           <label className="form-label">Description *</label>
-          {/* <TiptapEditor onChange={(e) => update({ description: e.target.value })}/> */}
-          <textarea
+          <TiptapEditor onChange={onChange}/>
+          {/* <textarea
             className="form-control"
             rows={4}
             value={data.description}
             onChange={(e) => update({ description: e.target.value })}
             required
-          />
+          /> */}
         </div>
 
         <div className="col-md-6 mb-3">
@@ -137,21 +141,6 @@ export default function Step1BasicInfo({ data, update, categories, goNext }) {
           <button type="button" className="btn btn-sm btn-outline-primary" onClick={addTag}>
             + Add Tag
           </button>
-        </div>
-
-        <div className="col-md-12 mb-3">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="liveTraining"
-              checked={data.liveTraining}
-              onChange={(e) => update({ liveTraining: e.target.checked })}
-            />
-            <label className="form-check-label" htmlFor="liveTraining">
-              Is Live Training
-            </label>
-          </div>
         </div>
       </div>
 
