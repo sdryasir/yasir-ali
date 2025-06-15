@@ -730,3 +730,6 @@ img, svg {
 .tiptap-toolbar-txt:focus{
     outline: none;
 }
+.form-control[type="file"]{
+    height: unset!important;
+}

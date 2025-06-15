@@ -57,7 +57,7 @@ export default function AddCategoryPage() {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="mt-5">
       <h2>Add New Category</h2>
       <form className="w-50" onSubmit={handleSubmit}>
         <div className="mb-3">

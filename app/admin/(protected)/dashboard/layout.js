@@ -1,6 +1,8 @@
 import {Poppins, Roboto} from 'next/font/google';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '@/components/admin-components/navbar';
+import '@/app/admin-dashboard.css'
+import Sidebar from '@/components/admin-components/Sidebar';
 const roboto = Roboto({
   subsets:["latin"],
   weight:["100", "300", "400", "500", "700", "900"],
@@ -21,7 +23,14 @@ export default function Layout({ children }) {
     <html lang="en">
       <body className={`${roboto.variable} ${poppins.variable}`}>
         <Navbar/>
-        {children}
+        <div className="container-fluid">
+          <div className="row">
+            <Sidebar/>
+            <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+              {children}
+            </main>
+          </div>
+        </div>
       </body>
     </html>
   );

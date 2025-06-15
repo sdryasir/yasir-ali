@@ -59,7 +59,7 @@ export default function BlogEditorPage() {
 
 
   return (
-    <div className="container mt-5">
+    <div className="mt-5">
       <h2>Add New Blog</h2>
       <form className="" onSubmit={handleSubmit}>
         <div className='row mb-3'>

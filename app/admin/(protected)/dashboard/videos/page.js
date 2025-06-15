@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 function Videos() {
   return (
-    <div className='container mt-5'>
+    <div className='mt-5'>
       <div className='d-flex justify-content-between mb-3'>
         <h2>All Videos</h2>
         <Link href={'/admin/dashboard/videos/add-video'} className='btn btn-success'>Add Video</Link>

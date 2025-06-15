@@ -27,7 +27,7 @@ export default function FetchCommentsPage() {
   };
 
   return (
-    <div className='container' style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
+    <div className='mt-5' style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
       <h1>Fetch YouTube Comments</h1>
       <button
         onClick={fetchComments}

@@ -16,7 +16,7 @@ export default function AdminLayout({ children }) {
   }, [isAdmin, status, router]);
 
   if (status === "loading" || !isAdmin) {
-    return <div className="container mt-5">Loading...</div>; // Optional loading state
+    return <div className="p-5 mt-5">Loading...</div>; // Optional loading state
   }
 
   return <>{children}</>;

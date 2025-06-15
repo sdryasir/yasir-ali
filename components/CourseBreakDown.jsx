@@ -1,39 +1,37 @@
 'use client';
 
 import { useEffect } from 'react';
-import Link from 'next/link';
+import DOMPurify from 'dompurify';
+
 export default function CourseBreakdown({breakdown}) {
   useEffect(() => {
-    // Load Bootstrap's JS for Collapse functionality
     import('bootstrap/dist/js/bootstrap.bundle.min.js');
   }, []);
 
   return (
     <section>
-      <div className="accordion" id="faqAccordion">
+      <div className="accordion rounded-0" id="courseAccordion">
         {breakdown.map((item, index) => (
-          <div className="accordion-item border rounded mb-3 shadow-sm" key={index}>
+          <div className="accordion-item" key={index}>
             <h2 className="accordion-header">
               <button
                 className="accordion-button d-flex justify-content-between align-items-center collapsed"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target={`#collapse${index}`}
+                data-bs-target={`#collapse-course${index}`}
                 aria-expanded="false"
-                aria-controls={`collapse${index}`}
+                aria-controls={`collapse-course${index}`}
               >
-                <span>{item.weekTitle}</span>
+                <span>{item.topicTitle}</span>
                 
               </button>
             </h2>
             <div
-              id={`collapse${index}`}
+              id={`collapse-course${index}`}
               className="accordion-collapse collapse"
-              data-bs-parent="#faqAccordion"
+              data-bs-parent="#courseAccordion"
             >
-              <div className="accordion-body text-muted">
-                {item.description}
-                
+              <div className="accordion-body text-muted" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.description) }}>
                </div>
             </div>
           </div>

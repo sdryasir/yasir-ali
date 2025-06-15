@@ -26,7 +26,7 @@ const FeaturesSchema = new mongoose.Schema({
   accessType: { type: String, enum: ['Free', 'Paid'], default: 'Free' },
   startType: { type: String, enum: ['On Demand'], default: 'On Demand' },
   prerequisites: [String],
-  language: {type: String, enum: ['Urdu', 'English'], default: 'Urdu'},
+  language: {type: String, default: 'Urdu'},
 }, { _id: false });
 
 const CourseSchema = new mongoose.Schema({

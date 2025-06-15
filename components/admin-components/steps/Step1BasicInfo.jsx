@@ -144,9 +144,11 @@ export default function Step1BasicInfo({ data, update, categories, goNext }) {
         </div>
       </div>
 
-      <button type="submit" className="btn btn-primary">
-        Next
-      </button>
+      <div className='d-flex justify-content-end'>
+        <button type="submit" className="btn btn-action text-white w-25">
+          Next
+        </button>
+      </div>
     </form>
   );
 }

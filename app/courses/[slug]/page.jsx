@@ -6,6 +6,7 @@ import CourseBreakdown from "@/components/CourseBreakDown";
 import SaveSlugClient from "@/components/saveSlug";
 import { getServerSession } from 'next-auth'
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import DescriptionCard from "@/components/DescriptionCard";
 
 async function getCourse(slug) {
   try {
@@ -103,21 +104,67 @@ async function page({params}) {
             <div className="col-md-8">
               <div className="course-objectives border p-4">
                 <h2>Course Overview</h2>
-                <p>
-                  {course[0].description}
-                </p>
+                <DescriptionCard description={course[0].description}/>
               </div>
               <div className="course-breakdown">
-                <h5 className="mt-4">Course Breakdown</h5>
+                
                 {
                   course[0]?.topicBreakdown.length > 0 ?
                   <>
-                    <p className="text-muted">This course is divided into {course[0]?.topicBreakdown.length} weeks, each with its own set of topics and objectives.</p> 
+                  <h5 className="mt-4">Course Breakdown</h5>
+                    <p className="text-muted">This course is divided into {course[0]?.topicBreakdown.length} sections, each with its own set of topics.</p> 
                     <CourseBreakdown  breakdown={course[0].topicBreakdown} />
                   </>:''
                 }
                 
               </div>
+
+              {
+                  course[0]?.features?.prerequisites.length > 0 ?
+                  <div className="pre-req">
+                    <h5 className="mt-4">Course Requirements</h5>
+                    <ul>
+                      {course[0]?.features?.prerequisites.map((pre, i)=>(
+                        <li key={i}><span>{pre}</span></li>
+                      ))}
+                    </ul>
+                  </div> :''
+                }
+              
+                {
+                  course[0]?.bonuses.length > 0 ?
+                  <div className="bonuses">
+                    <h5 className="mt-4">Bonus</h5>
+                    <ul>
+                      {course[0].bonuses.map((bonus, i)=>(
+                        <li key={i}><span>{bonus}</span></li>
+                      ))}
+                    </ul>
+                  </div> :''
+                }
+                {
+                  course[0]?.whyTakeThisCourse.length > 0 ?
+                  <div className="why-this-course">
+                    <h5 className="mt-4">Why take this course?</h5>
+                    <ul>
+                      {course[0].whyTakeThisCourse.map((why, i)=>(
+                        <li key={i}><span>{why}</span></li>
+                      ))}
+                    </ul>
+                  </div> :''
+                }
+                
+                
+                {
+                  course[0]?.faqs.length > 0 ?
+                  <div className="course-breakdown">
+                    <h5 className="mt-4">FAQs about this course</h5>
+                    <FAQ faqs={course[0]?.faqs}/>
+                  </div>:''
+                }
+                
+              
+              
             </div>
             <div className="col-md-4 p-0 sidebar-wrapper">
               <div>

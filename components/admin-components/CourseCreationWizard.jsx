@@ -107,7 +107,7 @@ export default function CourseCreationWizard({ categories }) {
   }
 
   return (
-    <div className="container mt-4">
+    <div className="mt-4">
       <div className="bg-success p-2 text-white mb-3">
         <h4>Step {step + 1} of 6 - {steps[step]}</h4>
       </div>

@@ -43,7 +43,7 @@ async function Page() {
     }
 
   return (
-    <div className='container mt-5'>
+    <div className='mt-5'>
       <div className='d-flex justify-content-between mb-3'>
         <h2>Blogs</h2>
         <Link className='btn btn-success' href={'/admin/dashboard/blogs/add-blog'}>Add Blog</Link>

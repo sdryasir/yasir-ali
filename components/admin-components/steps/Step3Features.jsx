@@ -114,24 +114,6 @@ export default function Step3Features({ data, update, goNext, goBack }) {
             + Add Prerequisite
           </button>
         </div>
-
-        
-        {/* <div className="col-md-3">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="recordingAvailable"
-              checked={features.recordingAvailable}
-              onChange={(e) => setFeatures((prev) => ({ ...prev, recordingAvailable: e.target.checked }))}
-            />
-            <label className="form-check-label" htmlFor="recordingAvailable">
-              Recording Available
-            </label>
-          </div>
-        </div> */}
-        
-
       </div>
       <div className="d-flex justify-content-between">
         <button type="button" className="btn btn-secondary" onClick={goBack}>
